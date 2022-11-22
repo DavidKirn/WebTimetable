@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Bootstrap demo</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <div class="header bg-default">
+            <nav class="navbar navbar-expand-lg navbar-dark container">
+                <div class="container-fluid">
+                    <a class="navbar-brand" id="navbar-icon" href=""><i class="fa-solid fa-table"></i></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item px-1 active">
+                                <a class="nav-link text-white px-3" href="">Timetable</a>
+                            </li>
+                            <li class="nav-item px-1">
+                                <a class="nav-link text-white px-3" href="">Rooms</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="content bg-content py-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-2">
+                        <select class="form-select" aria-label="Class select">
+                            <option selected disabled>Class</option>
+                            <option value="TI-1">TI-1</option>
+                            <option value="TI-2">TI-2</option>
+                            <option value="TI-3">TI-3</option>
+                            <option value="TI-4">TI-4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row pt-3">
+                    <div class="col">
+                        <table class="table table-bordered text-center bg-table" style="table-layout: fixed;">
+                            <thead>
+                                <tr id="table-date-row">
+                                    <th style="width: 5%; vertical-align: middle;"><i class="fa-solid fa-table text-default"></i></th>
+                                    <!-- <th>14.11.<br><span class="text-white-50">Monday</span></th>
+                                    <th>15.11.<br><span class="text-white-50">Tuesday</span></th>
+                                    <th>16.11.<br><span class="text-white-50">Wednesday</span></th>
+                                    <th>17.11.<br><span class="text-white-50">Thursday</span></th>
+                                    <th>18.11.<br><span class="text-white-50">Friday</span></th>
+                                    <th>19.11.<br><span class="text-white-50">Saturday</span></th> -->
+                                </tr>
+                            </thead>
+                            <tbody id="table-body">
+                                <!-- <tr>
+                                    <td><span class="text-white-50">08:00</span><br><span class="fw-bold">1.</span><br><span class="text-white-50">09:30</span></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="text-white-50">09:45</span><br><span class="fw-bold">2.</span><br><span class="text-white-50">11:15</span></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="text-white-50">11:30</span><br><span class="fw-bold">3.</span><br><span class="text-white-50">13:00</span></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="text-white-50">14:00</span><br><span class="fw-bold">4.</span><br><span class="text-white-50">15:30</span></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="text-white-50">15:45</span><br><span class="fw-bold">5.</span><br><span class="text-white-50">17:15</span></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="text-white-50">17:30</span><br><span class="fw-bold">6.</span><br><span class="text-white-50">19:00</span></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+        <script src="./momentjs/moment.min.js"></script>
+
+        <script>
+            window.addEventListener("DOMContentLoaded", (event) => {
+                const navbarIcon = document.querySelector("#navbar-icon");
+                navbarIcon.addEventListener("mouseover", (event) => {
+                    console.log("Test");
+                    navbarIcon.classList.add("fa-bounce");
+                    setTimeout(() => {
+                        navbarIcon.classList.remove("fa-bounce");
+                    }, 1000);
+                });
+
+                const data = {
+                    start_time: "08:00",
+                    end_time: "19:00",
+                    lessons: [
+                        {
+                            displayname: "1.",
+                            start_time: "08:00",
+                            end_time: "09:30"
+                        },
+                        {
+                            displayname: "2.",
+                            start_time: "09:45",
+                            end_time: "11:15"
+                        },
+                        {
+                            displayname: "3.",
+                            start_time: "11:30",
+                            end_time: "13:00"
+                        },
+                        {
+                            displayname: "4.",
+                            start_time: "14:00",
+                            end_time: "15:30"
+                        },
+                        {
+                            displayname: "5.",
+                            start_time: "15:45",
+                            end_time: "17:15"
+                        },
+                        {
+                            displayname: "6.",
+                            start_time: "17:30",
+                            end_time: "19:00"
+                        }
+                    ],
+                    breaks: [],
+                    days: [
+                        {
+                            date: "2022-11-21",
+                            lessons: [
+                                {
+                                    displayname: "WebAnw2",
+                                    start_time: "08:00",
+                                    end_time: "11:15"
+                                },
+                                {
+                                    displayname: "SigSys2",
+                                    start_time: "11:30",
+                                    end_time: "13:00"
+                                },
+                                {
+                                    displayname: "Pr_ErDiSys",
+                                    start_time: "15:45",
+                                    end_time: "17:15"
+                                }
+                            ]
+                        },
+                        {
+                            date: "2022-11-22",
+                            lessons: [
+                                {
+                                    displayname: "Numerik",
+                                    start_time: "11:30",
+                                    end_time: "13:00"
+                                }
+                            ]
+                        },
+                        {
+                            date: "2022-11-23",
+                            lessons: [
+                                {
+                                    displayname: "Pr_Bildver",
+                                    start_time: "08:00",
+                                    end_time: "09:30",
+                                    canelled: true
+                                },
+                                {
+                                    displayname: "BetSich",
+                                    start_time: "09:45",
+                                    end_time: "11:15"
+                                },
+                                {
+                                    displayname: "Bildver",
+                                    start_time: "11:30",
+                                    end_time: "13:00"
+                                },
+                                {
+                                    displayname: "ErDisSys",
+                                    start_time: "14:00",
+                                    end_time: "15:30"
+                                }
+                            ]
+                        },
+                        {
+                            date: "2022-11-24",
+                            lessons: [
+                                {
+                                    displayname: "Pr_BetSich",
+                                    start_time: "08:00",
+                                    end_time: "09:30"
+                                },
+                                {
+                                    displayname: "BetSich",
+                                    start_time: "09:45",
+                                    end_time: "11:15"
+                                },
+                                {
+                                    displayname: "SoftEng",
+                                    start_time: "14:00",
+                                    end_time: "17:15"
+                                }
+                            ]
+                        },
+                        {
+                            date: "2022-11-25",
+                            lessons: []
+                        },
+                        {
+                            date: "2022-11-26",
+                            lessons: []
+                        }
+                    ]
+                }
+
+                const tableBody = document.querySelector("#table-body");
+
+                let startTime = moment(data.start_time, "HH:mm");
+                let endTime = moment(data.end_time, "HH:mm");
+                let duration = moment.duration(endTime.diff(startTime));
+                let minutes = duration.asMinutes() - 1;
+                console.log(minutes);
+
+                for (let i = 0; i <= minutes; i++) {
+                    const tr = document.createElement("tr");
+                    tr.setAttribute("id", "time-row-" + moment(startTime).format("HH:mm"));
+                    tableBody.appendChild(tr);
+
+                    startTime = moment(startTime).add(1, "minutes");
+                }
+
+                // Calculate break times
+                data.breaks = getBreakTimes(data.start_time, data.end_time, data.lessons);
+                console.log(data.breaks);
+
+                data.lessons.forEach((element) => {
+                    const tr = document.querySelector("#time-row-" + element.start_time.replace(":", "\\:"));
+                    // console.log(tr);
+                    let lessonMinutes = getMinutesBtwTimes(element.start_time, element.end_time);
+                    // console.log(lessonMinutes);
+
+                    const tdTime = document.createElement("td");
+                    tdTime.setAttribute("rowspan", lessonMinutes);
+
+                    const divStart = document.createElement("div");
+                    const spanStart = document.createElement("span");
+                    spanStart.classList.add("text-white-50");
+                    spanStart.innerText = element.start_time;
+                    divStart.appendChild(spanStart);
+                    tdTime.appendChild(divStart);
+
+                    const divDispName = document.createElement("div");
+                    divDispName.classList.add("py-3");
+                    const spanDispName = document.createElement("span");
+                    spanDispName.classList.add("fw-bold");
+                    spanDispName.innerText = element.displayname;
+                    divDispName.appendChild(spanDispName);
+                    tdTime.appendChild(divDispName);
+
+                    const divEnd = document.createElement("div");
+                    const spanEnd = document.createElement("span");
+                    spanEnd.classList.add("text-white-50");
+                    spanEnd.innerText = element.end_time;
+                    divEnd.appendChild(spanEnd);
+                    tdTime.appendChild(divEnd);
+
+                    tr.appendChild(tdTime);
+                    // tr.appendChild(tdTime.cloneNode());
+                    // tr.appendChild(tdTime.cloneNode());
+                    // tr.appendChild(tdTime.cloneNode());
+                    // tr.appendChild(tdTime.cloneNode());
+                    // tr.appendChild(tdTime.cloneNode());
+                    // tr.appendChild(tdTime.cloneNode());
+                });
+
+                data.breaks.forEach((element) => {
+                    const tr = document.querySelector("#time-row-" + element.start_time.replace(":", "\\:"));
+                    // console.log(tr);
+                    let breakMinutes = getMinutesBtwTimes(element.start_time, element.end_time);
+                    // console.log(breakMinutes);
+
+                    const tdTime = document.createElement("td");
+                    tdTime.setAttribute("rowspan", breakMinutes);
+
+                    tr.appendChild(tdTime);
+                    // tr.appendChild(tdTime.cloneNode());
+                    // tr.appendChild(tdTime.cloneNode());
+                    // tr.appendChild(tdTime.cloneNode());
+                    // tr.appendChild(tdTime.cloneNode());
+                    // tr.appendChild(tdTime.cloneNode());
+                    // tr.appendChild(tdTime.cloneNode());
+                });
+
+                data.days.forEach((day) => {
+                    // Add day to date row header
+                    const dateRow = document.querySelector("#table-date-row");
+                    // console.log(dateRow);
+
+                    let dayDate = moment(day.date, "YYYY-MM-DD");
+
+                    let thDay = document.createElement("th");
+
+                    const divDate = document.createElement("div");
+                    const spanDate = document.createElement("span");
+                    spanDate.innerText = moment(dayDate).format("DD.MM.");
+                    divDate.appendChild(spanDate);
+                    thDay.appendChild(divDate);
+
+                    const divDayOfWeek = document.createElement("div");
+                    const spanDayOfWeek = document.createElement("span");
+                    spanDayOfWeek.classList.add("text-white-50");
+                    spanDayOfWeek.innerText = moment(dayDate).format("dddd");
+                    divDayOfWeek.appendChild(spanDayOfWeek);
+                    thDay.appendChild(divDayOfWeek);
+
+                    dateRow.appendChild(thDay);
+
+                    // Add day lessons
+                    day.lessons.forEach((lesson) => {
+                        const tr = document.querySelector("#time-row-" + lesson.start_time.replace(":", "\\:"));
+                        console.log(tr);
+                        let lessonMinutes = getMinutesBtwTimes(lesson.start_time, lesson.end_time);
+                        // console.log(lessonMinutes);
+
+                        const tdTime = document.createElement("td");
+                        tdTime.setAttribute("rowspan", lessonMinutes);
+                        tdTime.classList.add("lesson");
+
+                        if (lesson.canelled) {
+                            tdTime.classList.add("cancelled");
+                        }
+
+                        // const divStart = document.createElement("div");
+                        // const spanStart = document.createElement("span");
+                        // spanStart.classList.add("text-white-50");
+                        // spanStart.innerText = element.start_time;
+                        // divStart.appendChild(spanStart);
+                        // tdTime.appendChild(divStart);
+
+                        const divDispName = document.createElement("div");
+                        divDispName.classList.add("py-3");
+                        const spanDispName = document.createElement("span");
+                        spanDispName.classList.add("fw-bold");
+                        spanDispName.innerText = lesson.displayname;
+                        divDispName.appendChild(spanDispName);
+                        tdTime.appendChild(divDispName);
+
+                        // const divEnd = document.createElement("div");
+                        // const spanEnd = document.createElement("span");
+                        // spanEnd.classList.add("text-white-50");
+                        // spanEnd.innerText = element.end_time;
+                        // divEnd.appendChild(spanEnd);
+                        // tdTime.appendChild(divEnd);
+
+                        tr.appendChild(tdTime);
+                    });
+
+                    data.breaks.forEach((breakObj) => {
+                        if (!isBreakInLesson(breakObj, day.lessons)) {
+                            const tr = document.querySelector("#time-row-" + breakObj.start_time.replace(":", "\\:"));
+                            console.log(tr);
+                            let breakMinutes = getMinutesBtwTimes(breakObj.start_time, breakObj.end_time);
+
+                            const tdTime = document.createElement("td");
+                            tdTime.setAttribute("rowspan", breakMinutes);
+
+                            tr.appendChild(tdTime);
+                        }
+                    });
+
+                    data.lessons.forEach((lessonObj) => {
+                        if (!isLessonInLesson(lessonObj, day.lessons)) {
+                            const tr = document.querySelector("#time-row-" + lessonObj.start_time.replace(":", "\\:"));
+                            console.log(tr);
+                            let lessonMinutes = getMinutesBtwTimes(lessonObj.start_time, lessonObj.end_time);
+
+                            const tdTime = document.createElement("td");
+                            tdTime.setAttribute("rowspan", lessonMinutes);
+
+                            tr.appendChild(tdTime);
+                            console.log("Added empty lesson on " + day.date);
+                        }
+                    });
+                });
+            });
+
+            function isBreakInLesson(breakObj, lessons) {
+                let breakStart = moment(breakObj.start_time, "HH:mm");
+                let breakEnd = moment(breakObj.end_time, "HH:mm");
+                let breakInLesson = false;
+
+                lessons.forEach((lesson) => {
+                    let lessonStart = moment(lesson.start_time, "HH:mm");
+                    let lessonEnd = moment(lesson.end_time, "HH:mm");
+                    if (breakStart.isAfter(lessonStart) && breakEnd.isBefore(lessonEnd)) {
+                        // console.log("------------ true " + lesson.displayname + " " + breakObj.start_time + " - " + breakObj.end_time);
+                        breakInLesson = true;
+                    }
+                });
+
+                return breakInLesson;
+            }
+
+            function isLessonInLesson(lessonObj, lessons) {
+                let startTime = moment(lessonObj.start_time, "HH:mm");
+                let endTime = moment(lessonObj.end_time, "HH:mm");
+                let lessonInLesson = false;
+
+                lessons.forEach((lesson) => {
+                    let lessonStart = moment(lesson.start_time, "HH:mm");
+                    let lessonEnd = moment(lesson.end_time, "HH:mm");
+                    if (startTime.isSameOrAfter(lessonStart) && endTime.isSameOrBefore(lessonEnd)) {
+                        // console.log("------------ true " + lesson.displayname + " " + lessonObj.start_time + " - " + lessonObj.end_time);
+                        lessonInLesson = true;
+                    }
+                });
+
+                return lessonInLesson;
+            }
+
+            function getMinutesBtwTimes(time1, time2) {
+                let begin = moment(time1, "HH:mm");
+                let end = moment(time2, "HH:mm");
+                let duration = moment.duration(end.diff(begin));
+                return duration.asMinutes();
+            }
+
+            function getBreakTimes(startTime, endTime, lessons) {
+                let breaks = [];
+
+                // Check if there is a break before first lesson
+                let breakBeforeMinutes = getMinutesBtwTimes(startTime, lessons[0].start_time);
+                if (breakBeforeMinutes > 0) {
+                    breakObject = {
+                            start_time: startTime,
+                            end_time: lessons[0].start_time
+                        };
+                        breaks.push(breakObject);
+                }
+
+                // Get breaks between lessons
+                for (let i = 0; i < lessons.length - 1; i++) {
+                    let breakMinutes = getMinutesBtwTimes(lessons[i].end_time, lessons[i+1].start_time);
+                    if (breakMinutes > 0) {
+                        breakObject = {
+                            start_time: lessons[i].end_time,
+                            end_time: lessons[i+1].start_time
+                        };
+                        breaks.push(breakObject);
+                    }
+                }
+
+                // Check if there is a break past last lesson
+                let breakPastMinutes = getMinutesBtwTimes(lessons[lessons.length - 1].end_time, endTime);
+                if (breakPastMinutes > 0) {
+                    breakObject = {
+                            start_time: lessons[lessons.length - 1].end_time,
+                            end_time: endTime
+                        };
+                        breaks.push(breakObject);
+                }
+
+                return breaks;
+            }
+        </script>
+    </body>
+</html>

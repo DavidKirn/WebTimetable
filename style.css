@@ -1,0 +1,121 @@
+:root {
+    --dk-dark: #181818;
+    --dk-default: #3B916A;
+    --dk-red: #dc3545;
+    --dk-table: #121212;
+    --dk-table-border: #2a2a2a;
+}
+
+.btn-default {
+    --bs-btn-wieght: 600;
+    --bs-btn-color: var(--bs-white);
+    --bs-btn-bg: var(--dk-default);
+    --bs-btn-border-color: var(--dk-default);
+    --bs-btn-border-radius: .5rem;
+    --bs-btn-hover-color: var(--vs-white);
+}
+
+.bg-default {
+    background: var(--dk-default);
+}
+
+.bg-content {
+    background: var(--dk-dark);
+}
+
+.bg-table {
+    background: var(--dk-table);
+    color: var(--bs-white);
+    border-color: var(--dk-table-border);
+}
+
+.text-default {
+    color: var(--dk-default);
+}
+
+.nav-link.active {
+    font-weight: bold;
+}
+
+.nav-link {
+    color: #fff;
+}
+
+.nav-item {
+    position: relative;
+}
+
+@media only screen and (max-width: 991px) {
+    .nav-item.active::after {
+        position: absolute;
+        top: calc(50% - 14px);
+        width: .3rem;
+        height: 28px;
+        content: "";
+        background: #fff;
+        border-radius: 25px;
+    }
+
+    .nav-item:hover::after {
+        position: absolute;
+        top: calc(50% - 14px);
+        width: .3rem;
+        height: 28px;
+        content: "";
+        background: #fff;
+        border-radius: 25px;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .nav-item.active::after {
+        position: absolute;
+        bottom: calc(50% - 20px);
+        left: 8%;
+        width: calc(100% - 16%);
+        height: .25rem;
+        content: "";
+        background: #fff;
+        border-radius: 25px;
+    }
+
+    .nav-item:hover::after {
+        position: absolute;
+        bottom: calc(50% - 20px);
+        left: 8%;
+        width: calc(100% - 16%);
+        height: .25rem;
+        content: "";
+        background: #fff;
+        border-radius: 25px;
+    }
+}
+
+tbody td {
+    height: .08em;
+    padding: 0 !important;
+    margin: 0;
+    vertical-align: middle;
+}
+
+tbody tr {
+    height: .08em;
+    padding: 0 !important;
+    margin: 0;
+    /* background: var(--dk-default); */
+}
+
+tbody td.lesson {
+    background: var(--dk-default);
+    border-radius: .375rem;
+    cursor: pointer;
+}
+
+tbody td.lesson.cancelled {
+    background-image: linear-gradient(
+        to top right,
+        var(--dk-red) calc(50% - 1.5px),
+        var(--dk-dark),
+        var(--dk-red) calc(50% + 1.5px)
+    );
+}
