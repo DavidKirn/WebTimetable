@@ -120,114 +120,9 @@
                             <thead>
                                 <tr id="table-date-row">
                                     <th style="width: 5%; vertical-align: middle;"><i class="fa-solid fa-table text-default"></i></th>
-                                    <!-- <th>14.11.<br><span class="text-white-50">Monday</span></th>
-                                    <th>15.11.<br><span class="text-white-50">Tuesday</span></th>
-                                    <th>16.11.<br><span class="text-white-50">Wednesday</span></th>
-                                    <th>17.11.<br><span class="text-white-50">Thursday</span></th>
-                                    <th>18.11.<br><span class="text-white-50">Friday</span></th>
-                                    <th>19.11.<br><span class="text-white-50">Saturday</span></th> -->
                                 </tr>
                             </thead>
                             <tbody id="table-body">
-                                <!-- <tr>
-                                    <td><span class="text-white-50">08:00</span><br><span class="fw-bold">1.</span><br><span class="text-white-50">09:30</span></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><span class="text-white-50">09:45</span><br><span class="fw-bold">2.</span><br><span class="text-white-50">11:15</span></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><span class="text-white-50">11:30</span><br><span class="fw-bold">3.</span><br><span class="text-white-50">13:00</span></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><span class="text-white-50">14:00</span><br><span class="fw-bold">4.</span><br><span class="text-white-50">15:30</span></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><span class="text-white-50">15:45</span><br><span class="fw-bold">5.</span><br><span class="text-white-50">17:15</span></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><span class="text-white-50">17:30</span><br><span class="fw-bold">6.</span><br><span class="text-white-50">19:00</span></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr> -->
                             </tbody>
                         </table>
                     </div>
@@ -260,8 +155,10 @@
                 } else {
                     if (theme === "dark") {
                         document.documentElement.style.setProperty('--dk-body-bg', '#212529');
+                        document.documentElement.style.setProperty('--dk-text-color', '#fff');
                     } else {
                         document.documentElement.style.setProperty('--dk-body-bg', '#ffffff');
+                        document.documentElement.style.setProperty('--dk-text-color', '#000');
                     }
                     document.documentElement.setAttribute('data-bs-theme', theme)
                 }
@@ -449,7 +346,7 @@
 
                     const divStart = document.createElement("div");
                     const spanStart = document.createElement("span");
-                    spanStart.classList.add("text-white-50");
+                    spanStart.classList.add("text-body-secondary");
                     spanStart.innerText = element.start_time;
                     divStart.appendChild(spanStart);
                     tdTime.appendChild(divStart);
@@ -464,7 +361,7 @@
 
                     const divEnd = document.createElement("div");
                     const spanEnd = document.createElement("span");
-                    spanEnd.classList.add("text-white-50");
+                    spanEnd.classList.add("text-body-secondary");
                     spanEnd.innerText = element.end_time;
                     divEnd.appendChild(spanEnd);
                     tdTime.appendChild(divEnd);
@@ -507,13 +404,14 @@
 
                     const divDate = document.createElement("div");
                     const spanDate = document.createElement("span");
+                    spanDate.classList.add("text-body-emphasis");
                     spanDate.innerText = moment(dayDate).format("DD.MM.");
                     divDate.appendChild(spanDate);
                     thDay.appendChild(divDate);
 
                     const divDayOfWeek = document.createElement("div");
                     const spanDayOfWeek = document.createElement("span");
-                    spanDayOfWeek.classList.add("text-white-50");
+                    spanDayOfWeek.classList.add("text-body-secondary");
                     spanDayOfWeek.innerText = moment(dayDate).format("dddd");
                     divDayOfWeek.appendChild(spanDayOfWeek);
                     thDay.appendChild(divDayOfWeek);
@@ -546,6 +444,7 @@
                         divDispName.classList.add("py-3");
                         const spanDispName = document.createElement("span");
                         spanDispName.classList.add("fw-bold");
+                        spanDispName.classList.add("text-body-emphasis");
                         spanDispName.innerText = lesson.displayname;
                         divDispName.appendChild(spanDispName);
                         tdTime.appendChild(divDispName);

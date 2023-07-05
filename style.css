@@ -7,6 +7,7 @@
     --dk-default-rgb: 59, 145, 106;
     --dk-body-color-rgb: 173, 181, 189;
     --dk-body-bg: #fff;
+    --dk-text-color: #000;
 }
 
 .btn-default {
@@ -96,6 +97,10 @@
     }
 }
 
+.table {
+    background-color: #1b1f22;
+}
+
 tbody td {
     height: .08em;
     padding: 0 !important;
@@ -148,4 +153,8 @@ tbody td.lesson.cancelled {
 
 .navbar-brand:hover {
     transform: rotate(-3deg) scale(1.1);
+}
+
+.lesson {
+    color: var(--dk-text-color);
 }
