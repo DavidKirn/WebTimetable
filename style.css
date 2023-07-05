@@ -1,9 +1,12 @@
 :root {
-    --dk-dark: #181818;
+    --dk-dark: #212529;
     --dk-default: #3B916A;
     --dk-red: #dc3545;
-    --dk-table: #121212;
-    --dk-table-border: #2a2a2a;
+    --dk-table: #2b3035;
+    --dk-table-border: #121212;
+    --dk-default-rgb: 59, 145, 106;
+    --dk-body-color-rgb: 173, 181, 189;
+    --dk-body-bg: #fff;
 }
 
 .btn-default {
@@ -17,10 +20,12 @@
 
 .bg-default {
     background: var(--dk-default);
+    --bs-modal-bg: var(--dk-default);
 }
 
 .bg-content {
-    background: var(--dk-dark);
+    background: var(--dk-body-bg);
+    --bs-modal-bg: #000;
 }
 
 .bg-table {
@@ -118,4 +123,29 @@ tbody td.lesson.cancelled {
         var(--dk-dark),
         var(--dk-red) calc(50% + 1.5px)
     );
+}
+
+.dropdown-item {
+    border-radius: 0.375rem;
+}
+
+.dropdown-menu {
+    --bs-dropdown-min-width: 8rem;
+    --bs-dropdown-padding-x: .25rem;
+    --bs-dropdown-padding-y: .25rem;
+    --bs-dropdown-link-hover-bg: rgba(var(--dk-default-rgb), .1);
+    --bs-dropdown-link-active-bg: rgba(var(--dk-default-rgb), 1);
+    --bs-dropdown-font-size: .875rem;
+    font-size: .875rem;
+    border-radius: .25rem;
+    box-shadow: 0 0.5rem 1rem rgba(var(--dk-body-color-rgb), 0.15);
+}
+
+.navbar-brand {
+    color: #fff;
+    transition: .2s ease-in-out transform;
+}
+
+.navbar-brand:hover {
+    transform: rotate(-3deg) scale(1.1);
 }
