@@ -59,13 +59,13 @@
                                 </li>
                                 <li class="nav-item dropdown">
                                     <button class="btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle d-flex align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-display="static">
-                                        <i class="fa-solid fa-moon fa-fw my-1"></i>
+                                        <i class="fa-solid fa-circle-half-stroke fa-fw my-1" id="nav-icon-active-theme"></i>
                                     </button>
                                   
                                     <ul class="dropdown-menu dropdown-menu-end">
-                                        <li><button class="dropdown-item d-flex align-items-center"><i class="fa-solid fa-sun fa-fw me-2 opacity-50"></i>Light</button></li>
-                                        <li><button class="dropdown-item d-flex align-items-center active"><i class="fa-solid fa-moon fa-fw me-2 opacity-50"></i>Dark<i class="fa-solid fa-check fa-fw ms-auto"></i></button></li>
-                                        <li><button class="dropdown-item d-flex align-items-center"><i class="fa-solid fa-circle-half-stroke fa-fw me-2 opacity-50"></i>Auto</button></li>
+                                        <li><button class="dropdown-item d-flex align-items-center btn-theme"><i class="fa-solid fa-sun fa-fw me-2 opacity-50"></i>Light</button></li>
+                                        <li><button class="dropdown-item d-flex align-items-center btn-theme"><i class="fa-solid fa-moon fa-fw me-2 opacity-50"></i>Dark</i></button></li>
+                                        <li><button class="dropdown-item d-flex align-items-center btn-theme"><i class="fa-solid fa-circle-half-stroke fa-fw me-2 opacity-50"></i>Auto</button></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -138,29 +138,37 @@
 
         <script>
             'strict'
-            console.log("TEST");
-            const storedTheme = localStorage.getItem('theme')
-
             const getPreferredTheme = () => {
+                var storedTheme = localStorage.getItem("theme");
                 if (storedTheme) {
-                    return storedTheme
+                    return storedTheme;
                 }
 
-                return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+                return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
             }
 
             const setTheme = function (theme) {
-                if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                    document.documentElement.setAttribute('data-bs-theme', 'dark')
-                } else {
-                    if (theme === "dark") {
-                        document.documentElement.style.setProperty('--dk-body-bg', '#212529');
-                        document.documentElement.style.setProperty('--dk-text-color', '#fff');
-                    } else {
-                        document.documentElement.style.setProperty('--dk-body-bg', '#ffffff');
-                        document.documentElement.style.setProperty('--dk-text-color', '#000');
-                    }
-                    document.documentElement.setAttribute('data-bs-theme', theme)
+                switch (theme) {
+                    case "light":
+                        document.querySelector("#nav-icon-active-theme").className = "fa-solid fa-sun fa-fw my-1";
+                        break;
+                    case "dark":
+                        document.querySelector("#nav-icon-active-theme").className = "fa-solid fa-moon fa-fw my-1";
+                        break;
+                    default:
+                        document.querySelector("#nav-icon-active-theme").className = "fa-solid fa-circle-half-stroke fa-fw my-1";
+                }
+
+                if (theme === "auto" && window.matchMedia("(prefers-color-scheme: dark)").matches || theme === "dark") {
+                    document.documentElement.style.setProperty("--dk-body-bg", "#212529");
+                    document.documentElement.style.setProperty("--dk-table-bg", "#1b1f22");
+                    document.documentElement.style.setProperty("--dk-text-color", "#fff");
+                    document.documentElement.setAttribute("data-bs-theme", "dark");
+                } else if (theme === "auto" && window.matchMedia("(prefers-color-scheme: light)").matches || theme === "light") {
+                    document.documentElement.style.setProperty("--dk-body-bg", "#fff");
+                    document.documentElement.style.setProperty("--dk-table-bg", "#fff");
+                    document.documentElement.style.setProperty("--dk-text-color", "#000");
+                    document.documentElement.setAttribute("data-bs-theme", "light");
                 }
             }
 
@@ -180,6 +188,32 @@
                     } else {
                         setTheme("light");
                     }
+                });
+
+                const selectedTheme = localStorage.getItem("theme");
+                document.querySelectorAll(".btn-theme").forEach(btn => {
+                    if (btn.innerText.toLowerCase() == selectedTheme) {
+                        const iconActiveTheme = document.createElement("i");
+                        iconActiveTheme.id = "icon-active-theme";
+                        iconActiveTheme.className = "fa-solid fa-check fa-fw ms-auto";
+                        btn.appendChild(iconActiveTheme);
+                        btn.classList.add("active");
+                    }
+
+                    btn.addEventListener("click", () => {
+                        if (btn.classList.contains("active")) {
+                            return;
+                        }
+                        document.querySelectorAll(".btn-theme").forEach(btn => btn.classList.remove("active"));
+                        btn.classList.add("active");
+                        var iconActiveTheme = document.querySelector("#icon-active-theme");
+                        btn.appendChild(iconActiveTheme.cloneNode(true));
+                        iconActiveTheme.remove();
+                        var theme = btn.innerText.toLowerCase();
+                        localStorage.setItem("theme", theme);
+                        setTheme(theme);
+                        console.log("Selected theme: " + theme);
+                    });
                 });
 
                 // const navbarIcon = document.querySelector("#navbar-icon");
