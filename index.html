@@ -183,6 +183,9 @@
 
                 // recommended method for newer browsers: specify event-type as first argument
                 darkModePreference.addEventListener("change", e => {
+                    if (localStorage.getItem("theme") !== "auto") {
+                        return;
+                    }
                     if (e.matches) {
                         setTheme("dark");
                     } else {
