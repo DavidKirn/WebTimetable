@@ -194,6 +194,11 @@
                 });
 
                 const selectedTheme = localStorage.getItem("theme");
+                if (!selectedTheme) {
+                    localStorage.setItem("theme", "auto");
+                    selectedTheme = localStorage.getItem("theme");
+                }
+                
                 document.querySelectorAll(".btn-theme").forEach(btn => {
                     if (btn.innerText.toLowerCase() == selectedTheme) {
                         const iconActiveTheme = document.createElement("i");
