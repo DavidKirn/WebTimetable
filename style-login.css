@@ -58,10 +58,22 @@ body {
     filter: var(--tc-icon-filter);
 }
 
+@media only screen and (max-width: 450px) {
+    .form-signin {
+        margin: .25rem;
+    }
+}
+
+@media only screen and (min-width: 451px) {
+    .form-signin {
+        max-width: 330px;
+        margin: 5rem;
+    }
+}
+
 .form-signin {
-    max-width: 330px;
     border-radius: .5rem;
-    margin: 5rem;
+    
 }
 
 .form-signin .form-floating:focus-within {
