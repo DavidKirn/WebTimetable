@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>timecron</title>
+        <link type="image/x-icon" href="./favicon.ico">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+        <link rel="stylesheet" href="./style-login.css">
+    </head>
+    <body class="d-flex align-items-center">
+
+        <div class="dropdown position-fixed top-0 end-0 mt-3 me-3 bd-mode-toggle">
+            <button class="btn btn-primary-subtle rounded-pill dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (dark)">
+                <i class="fa-solid fa-circle-half-stroke fa-fw my-1" id="nav-icon-active-theme"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><button class="dropdown-item d-flex align-items-center btn-theme"><i class="fa-solid fa-sun fa-fw me-2 opacity-75"></i>Light</button></li>
+                <li><button class="dropdown-item d-flex align-items-center btn-theme"><i class="fa-solid fa-moon fa-fw me-2 opacity-75"></i>Dark</i></button></li>
+                <li><button class="dropdown-item d-flex align-items-center btn-theme active"><i class="fa-solid fa-circle-half-stroke fa-fw me-2 opacity-75"></i>Auto</button></li>
+            </ul>
+        </div>
+
+        <main class="m-auto">
+            <form action="POST" class="form-signin p-3 pt-2 bg-content">
+                <img src="./timecron.svg" alt="timecron" class="pb-3 px-3 img-fluid svg-icon">
+
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                    <label for="floatingInput">Email</label>
+                </div>
+            
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <label for="floatingPassword">Password</label>
+                </div>
+
+                <button type="button" class="btn btn-primary w-100 mt-3 rounded-pill">Log In</button>
+
+                <div class="loginSignUpSeparator">
+                    <span class="textInSeparator fs-6 text-body-secondary">or</span>
+                </div>
+
+                <button type="button" class="btn btn-sign-up w-100 rounded-pill">Sign Up</button>
+            </form>
+        </main>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script>
+            'use strict'
+            const getPreferredTheme = () => {
+                var storedTheme = localStorage.getItem("theme");
+                if (storedTheme) {
+                    return storedTheme;
+                }
+                localStorage.setItem("theme", "auto");
+                return "auto";
+            }
+
+            const setTheme = function (theme) {
+                switch (theme) {
+                    case "light":
+                        document.querySelector("#nav-icon-active-theme").className = "fa-solid fa-sun fa-fw my-1";
+                        break;
+                    case "dark":
+                        document.querySelector("#nav-icon-active-theme").className = "fa-solid fa-moon fa-fw my-1";
+                        break;
+                    default:
+                        document.querySelector("#nav-icon-active-theme").className = "fa-solid fa-circle-half-stroke fa-fw my-1";
+                }
+
+                if (theme === "auto" && window.matchMedia("(prefers-color-scheme: dark)").matches || theme === "dark") {
+                    document.documentElement.setAttribute("data-bs-theme", "dark");
+                } else if (theme === "auto" && window.matchMedia("(prefers-color-scheme: light)").matches || theme === "light") {
+                    document.documentElement.setAttribute("data-bs-theme", "light");
+                }
+            }
+
+            var selectedTheme = getPreferredTheme();
+            setTheme(selectedTheme);
+
+            window.addEventListener("DOMContentLoaded", (event) => {
+                // MediaQueryList
+                const darkModePreference = window.matchMedia("(prefers-color-scheme: dark)");
+
+                // recommended method for newer browsers: specify event-type as first argument
+                darkModePreference.addEventListener("change", e => {
+                    if (localStorage.getItem("theme") !== "auto") {
+                        return;
+                    }
+                    if (e.matches) {
+                        setTheme("dark");
+                    } else {
+                        setTheme("light");
+                    }
+                });
+                
+                document.querySelectorAll(".btn-theme").forEach(btn => {
+                    if (btn.innerText.toLowerCase() == selectedTheme) {
+                        const iconActiveTheme = document.createElement("i");
+                        iconActiveTheme.id = "icon-active-theme";
+                        iconActiveTheme.className = "fa-solid fa-check fa-fw ms-auto";
+                        btn.appendChild(iconActiveTheme);
+                        btn.classList.add("active");
+                    }
+
+                    btn.addEventListener("click", () => {
+                        if (btn.classList.contains("active")) {
+                            return;
+                        }
+                        document.querySelectorAll(".btn-theme").forEach(btn => btn.classList.remove("active"));
+                        btn.classList.add("active");
+                        var iconActiveTheme = document.querySelector("#icon-active-theme");
+                        btn.appendChild(iconActiveTheme.cloneNode(true));
+                        iconActiveTheme.remove();
+                        var theme = btn.innerText.toLowerCase();
+                        localStorage.setItem("theme", theme);
+                        setTheme(theme);
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

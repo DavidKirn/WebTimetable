@@ -194,10 +194,10 @@
                     }
                 });
 
-                const selectedTheme = localStorage.getItem("theme");
+                var selectedTheme = localStorage.getItem("theme");
                 if (!selectedTheme) {
                     localStorage.setItem("theme", "auto");
-                    selectedTheme = localStorage.getItem("theme");
+                    selectedTheme = "auto";
                 }
                 
                 document.querySelectorAll(".btn-theme").forEach(btn => {

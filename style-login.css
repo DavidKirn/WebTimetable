@@ -1,0 +1,175 @@
+:root {
+    --dk-dark: #212529;
+    --dk-default: #13795b;
+    
+    --dk-red: #dc3545;
+    --dk-table: #2b3035;
+    --dk-table-border: #121212;
+    --dk-default-rgb: 59, 145, 106;
+    --dk-body-color-rgb: 173, 181, 189;
+    --dk-body-bg: #fff;
+    --dk-text-color: #000;
+    --dk-table-bg: #1b1f22;
+}
+
+[data-bs-theme="dark"] {
+    --bs-body-color: #fff;
+    --bs-body-bg: #0f0f0f;
+    --tc-default: #13795b;
+    --tc-default-subtle: #79dfc1;
+    --tc-default-subtle-bg: #06281e;
+    --tc-default-subtle-border-color: #0d503c;
+    --tc-content-bg: #222222;
+    --tc-content-border-color: transparent;
+    --tc-input-bg: #1a1a1a;
+    --tc-input-border-color: #2E2E2E;
+    --tc-separator-border-color: #404040;
+    --tc-icon-filter: invert(0);
+    --tc-dropdown-hover-bg: var(--tc-default-subtle-bg);
+    --tc-dropdown-active-bg: var(--tc-default);
+}
+
+[data-bs-theme="light"] {
+    --bs-body-color: #0f0f0f;
+    --bs-body-bg: #fff;
+    --tc-default: #13795b;
+    --tc-default-subtle: #0d503c;
+    --tc-default-subtle-bg: #a6e9d5;
+    --tc-default-subtle-border-color: #79dfc1;
+    --tc-content-bg: #f8f8f8;
+    --tc-content-border-color: #d3d3d3;
+    --tc-input-bg: #fff;
+    --tc-input-border-color: #d3d3d3;
+    --tc-separator-border-color: #d3d3d3;
+    --tc-icon-filter: invert(1);
+    --tc-dropdown-hover-bg: var(--tc-default-subtle-bg);
+    --tc-dropdown-active-bg: var(--tc-default);
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+
+.svg-icon {
+    filter: var(--tc-icon-filter);
+}
+
+.form-signin {
+    max-width: 330px;
+    border-radius: .5rem;
+    margin: 5rem;
+}
+
+.form-signin .form-floating:focus-within {
+    z-index: 2;
+}
+
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.form-control,
+.form-floating label {
+    --bs-body-bg: var(--tc-input-bg);
+    --bs-border-color: var(--tc-input-border-color);
+}
+
+
+.loginSignUpSeparator {
+    border-top: 1px solid var(--tc-separator-border-color);
+    position: relative;
+    margin-top: 8.7%;
+    margin-bottom: 4%;
+    height: 15px;
+    text-align: center;
+    font-size: 83.34%;
+}
+
+.loginSignUpSeparator .textInSeparator {
+    background-color: var(--tc-content-bg);
+    padding: 0 .5em;
+    position: relative;
+    top: -.9em;
+}
+
+.btn-primary {
+    --bs-btn-font-weight: 600;
+    --bs-btn-color: var(--bs-white);
+    --bs-btn-bg: var(--dk-default);
+    --bs-btn-border-color: var(--dk-default);
+    --bs-btn-hover-color: var(--bs-white);
+    --bs-btn-hover-bg: #0e5842;
+    --bs-btn-hover-border-color: #0e5842;
+    --bs-btn-active-color: var(--bs-white);
+    --bs-btn-active-bg: var(--dk-default);
+    --bs-btn-active-border-color: var(--dk-default);
+    --bs-btn-focus-box-shadow: 0 0 0 .2rem #06281e4c;
+    --bs-btn-active-box-shadow: 0 0 0 .2rem #06281e4c;
+}
+
+.btn-primary-subtle {
+    --bs-btn-font-weight: 600;
+    --bs-btn-color: var(--tc-default-subtle);
+    --bs-btn-bg: var(--tc-default-subtle-bg);
+    --bs-btn-border-color: var(--tc-default-subtle-border-color);
+    --bs-btn-hover-color: var(--tc-default-subtle);
+    --bs-btn-hover-bg: var(--tc-default-subtle-bg);
+    --bs-btn-hover-border-color: var(--tc-default-subtle-border-color);
+    --bs-btn-active-color: var(--tc-default-subtle);
+    --bs-btn-active-bg: var(--tc-default-subtle-bg);
+    --bs-btn-active-border-color: var(--tc-default-subtle-border-color);
+    --bs-btn-focus-box-shadow: 0 0 0 .2rem #06281e4c;
+    --bs-btn-active-box-shadow: 0 0 0 .2rem #06281e4c;
+}
+
+.btn-sign-up {
+    --bs-btn-font-weight: 600;
+    --bs-btn-color: var(--bs-body-color);
+    --bs-btn-bg: transparent;
+    --bs-btn-border-color: var(--dk-default);
+    --bs-btn-hover-color: var(--bs-body-color);
+    --bs-btn-hover-bg: transparent;
+    --bs-btn-hover-border-color: var(--dk-default);
+    --bs-btn-active-color: var(--bs-body-color);
+    --bs-btn-active-bg: transparent;
+    --bs-btn-active-border-color: #5cbc91;
+}
+
+.btn-sign-up:hover,
+.btn-sign-up:focus {
+    box-shadow: inset 0 0 0 .0825rem var(--dk-default);
+}
+
+.bg-content {
+    background-color: var(--tc-content-bg);
+    border: 1px solid var(--tc-content-border-color);
+}
+
+.dropdown-item {
+    border-radius: 0.375rem;
+}
+
+.dropdown-menu {
+    --bs-dropdown-min-width: 8rem;
+    --bs-dropdown-padding-x: .25rem;
+    --bs-dropdown-padding-y: .25rem;
+    --bs-dropdown-link-hover-bg: var(--tc-dropdown-hover-bg);
+    --bs-dropdown-link-active-bg: var(--tc-dropdown-active-bg);
+    --bs-dropdown-font-size: .875rem;
+    font-size: .875rem;
+    border-radius: .25rem;
+    border: 1px solid var(--tc-content-border-color);
+    background-color: var(--tc-content-bg);
+}
