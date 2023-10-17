@@ -181,7 +181,7 @@ body {
     --bs-dropdown-link-active-bg: var(--tc-dropdown-active-bg);
     --bs-dropdown-font-size: .875rem;
     font-size: .875rem;
-    border-radius: .25rem;
+    border-radius: 1rem;
     border: 1px solid var(--tc-content-border-color);
     background-color: var(--tc-content-bg);
 }
