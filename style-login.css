@@ -185,3 +185,7 @@ body {
     border: 1px solid var(--tc-content-border-color);
     background-color: var(--tc-content-bg);
 }
+
+#notifications {
+    font-size: small;
+}
