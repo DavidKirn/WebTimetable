@@ -4,19 +4,267 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>timecron</title>
-        <link type="image/x-icon" href="./favicon.ico">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-        <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" href="./style-login.css">
+
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+            }
+
+            :root {
+                --bg-root: rgb(66, 68, 87);
+
+                --bg-primary-rgb: 32, 33, 42;
+                --bg-primary: rgb(var(--bg-primary-rgb));
+                --bg-secondary: rgb(80, 82, 88);
+                --bg-tertiary: rgb(40, 41, 50);
+
+                --hi-success: rgb(17, 201, 0);
+                --hi-warning: rgb(255, 147, 5);
+                --hi-danger: rgb(255, 0, 126);
+                --hi-primary: rgb(138, 149, 255);
+                --hi-secondary: rgb(90, 104, 242);
+                --bg-hi: radial-gradient(
+                    74% 185% at -3% 0%,
+                    var(--hi-secondary) 0%,
+                    var(--hi-primary) 100%
+                );
+
+                --fg-primary: rgb(233, 233, 233);
+                --fg-secondary: rgba(131, 133, 137);
+
+                --fw-sm: 500;
+                --fw-base: 700;
+
+                --sp-base: 16px;
+                --sp-sm-1: calc(7 / 8 * var(--sp-base));
+                --sp-sm-2: calc(6 / 8 * var(--sp-base));
+                --sp-sm-3: calc(5 / 8 * var(--sp-base));
+                --sp-sm-4: calc(4 / 8 * var(--sp-base));
+                --sp-sm-5: calc(3 / 8 * var(--sp-base));
+                --sp-sm-6: calc(2 / 8 * var(--sp-base));
+                --sp-sm-7: calc(1 / 8 * var(--sp-base));
+                --sp-lg-7: calc((1 + 7 / 8) * var(--sp-base));
+                --sp-lg-6: calc((1 + 6 / 8) * var(--sp-base));
+                --sp-lg-5: calc((1 + 5 / 8) * var(--sp-base));
+                --sp-lg-4: calc((1 + 4 / 8) * var(--sp-base));
+                --sp-lg-3: calc((1 + 3 / 8) * var(--sp-base));
+                --sp-lg-2: calc((1 + 2 / 8) * var(--sp-base));
+                --sp-lg-1: calc((1 + 1 / 8) * var(--sp-base));
+
+                /* major third scale
+                    factor: 1.250 */
+                --fs-sm-1: 0.8rem;
+                --fs-base: 1rem;
+                --fs-lg-1: 1.25rem;
+                --fs-lg-2: 1.563rem;
+                --fs-lg-3: 1.953rem;
+                --fs-lg-4: 2.441rem;  
+
+                --bd-radius: 24px;
+                --bd: 1px solid var(--bg-secondary);
+
+                --transition: 300ms ease-in-out;
+                --transition-slow: 500ms ease-in-out;
+            }
+
+            .calendar {
+                --left-margin: var(--sp-base);
+                --hours: calc(var(--end-hour) - var(--start-hour));
+                --rows: calc(var(--resolution) * var(--hours));
+
+                position: relative;
+                /* border-right: 1px dashed var(--bg-secondary); */
+            }
+
+            main {
+                background: var(--bg-root);
+
+                display: grid;
+                place-content: center;
+
+                padding: var(--sp-base);
+
+                color: var(--fg-primary);
+            }
+
+            section {
+                --icon-size: 58px;
+                --padding: var(--sp-lg-1);
+
+                background: var(--tc-content-bg);
+                border: 1px solid var(--tc-content-border-color);
+
+                display: grid;
+                grid-template-rows: max-content 1fr;
+            }
+
+            section > header {
+                /* display: grid;
+                grid-template-columns: max-content 1fr;
+                grid-template-rows: repeat(2, 1fr);
+                gap: var(--sp-sm-1);
+                grid-template-areas:
+                    "icon header"
+                    "icon sub-header";
+
+                padding: var(--padding); */
+            }
+
+            section > header > .icon {
+                grid-area: icon;
+
+                display: grid;
+                place-content: center;
+                border-radius: calc(2 / 3 * var(--bd-radius));
+
+                width: var(--icon-size);
+                height: var(--icon-size);
+
+                background: var(--bg-primary);
+                color: var(--hi-primary);
+            }
+
+            section > header > h2 {
+                grid-area: header;
+
+                font-size: var(--fs-lg-1);
+                align-self: end;
+            }
+
+            section > header > p {
+                grid-area: sub-header;
+
+                font-weight: var(--fw-sm);
+            }
+
+            section > *:nth-child(2) {
+                margin: 0 var(--padding) var(--padding);
+                place-self: stretch;
+            }
+
+            section {
+                /* width: 80rem; */
+                height: 50rem;
+            }
+
+            .calendar > * {
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                top: 0;
+            }
+
+            .calendar__hour-grid {
+                display: grid;
+                grid-auto-flow: row;
+                grid-auto-rows: 1fr;
+            }
+
+            .calendar__hour {
+                border-top: 1px dashed var(--bg-secondary);
+            }
+
+            .calendar__hour:last-child {
+                border-bottom: 1px dashed var(--bg-secondary);
+            }
+
+            .calendar__hour > .label {
+                font-size: var(--fs-sm-1);
+                line-height: 2.5;
+            }
+
+            .calendar__hour.active {
+                position: relative;
+
+                color: var(--tc-default);
+                font-weight: bold;
+            }
+
+            .calendar_day__hour.active::before {
+                content: "";
+
+                position: absolute;
+
+                left: 0; /* calc(1.5 * var(--left-margin)) */
+                right: 0;
+                height: 1px;
+                top: calc(100% * var(--current-minute) / 60);
+                z-index: 2;
+
+                border-bottom: 2px dashed var(--tc-default);
+            }
+
+            .calendar__events {
+                display: grid;
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(var(--rows), 1fr);
+
+                /* left: calc(2 * var(--left-margin)); */
+                margin: 0 .25rem 0 .25rem;
+            }
+
+            .calendar__event {
+                --start: 0;
+                --end: 0;
+                --start-row: ;
+
+                grid-row-start: calc(
+                    (var(--start) - var(--start-hour))
+                    * var(--resolution)
+                    + 1
+                );
+                grid-row-end: calc(
+                    (var(--end) - var(--start-hour))
+                    * var(--resolution)
+                    
+                );
+
+                padding: var(--sp-sm-2);
+                border-radius: calc(2 / 3 * var(--bd-radius));
+
+                background: var(--tc-default);
+                cursor: pointer;
+            }
+
+            .calendar__event > .label {
+                font-weight: var(--fw-sm);
+            }
+
+            .calendar__event.past {
+                background: var(--tc-input-bg);
+            }
+
+            /* .hours {
+                width: 5%;
+                height: max-content;
+                padding-right: 0;
+            }
+
+            .days {
+                width: 95%;
+                padding-left: 0;
+                padding-right: 0;
+            } */
+
+            /* .calendar__hour {
+                height: 8rem;
+            } */
+
+            
+        </style>
     </head>
     <body>
-
-        <header class="navbar navbar-expand-lg bd-navbar sticky-top bg-default">
+        <header class="navbar navbar-expand-lg bd-navbar sticky-top bg-default bg-content">
             <nav class="container-xxl bd-gutter flex-wrap flex-lg-nowrap" aria-label="Main navigation">
                 <a class="navbar-brand p-0 me-0 me-lg-2" id="navbar-icon" href="/" aria-label="Bootstrap">
-                    <svg class="d-block my-1" xmlns="http://www.w3.org/2000/svg" width="40" height="32" viewBox="0 0 512 512" role="img">
-                        <path fill-rule="evenodd" clip-rule="evenodd" fill="currentColor" d="M64 256V160H224v96H64zm0 64H224v96H64V320zm224 96V320H448v96H288zM448 256H288V160H448v96zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64z"/>
-                    </svg>
+                    <img src="./timecron-icon.svg" alt="timecron" class="svg-icon" height="32px">
                 </a>
                 <div class="bd-navbar-toggle">
                     <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#bdSidebar" aria-controls="bdSidebar" aria-label="Toggle docs navigation">
@@ -36,10 +284,10 @@
                         <div class="offcanvas-body p-4 pt-0 p-lg-0">
                             <ul class="navbar-nav flex-row flex-wrap bd-navbar-nav">
                                 <li class="nav-item px-1 active">
-                                    <a class="nav-link text-white px-3" href="">Timetable</a>
+                                    <a class="nav-link px-3" href="">Timetable</a>
                                 </li>
                                 <li class="nav-item px-1">
-                                    <a class="nav-link text-white px-3" href="">Rooms</a>
+                                    <a class="nav-link px-3" href="">Rooms</a>
                                 </li>
                             </ul>
                             <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
@@ -62,11 +310,11 @@
                                     <button class="btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle d-flex align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-display="static">
                                         <i class="fa-solid fa-circle-half-stroke fa-fw my-1" id="nav-icon-active-theme"></i>
                                     </button>
-                                  
+                                    
                                     <ul class="dropdown-menu dropdown-menu-end">
-                                        <li><button class="dropdown-item d-flex align-items-center btn-theme"><i class="fa-solid fa-sun fa-fw me-2 opacity-50"></i>Light</button></li>
-                                        <li><button class="dropdown-item d-flex align-items-center btn-theme"><i class="fa-solid fa-moon fa-fw me-2 opacity-50"></i>Dark</i></button></li>
-                                        <li><button class="dropdown-item d-flex align-items-center btn-theme"><i class="fa-solid fa-circle-half-stroke fa-fw me-2 opacity-50"></i>Auto</button></li>
+                                        <li><button class="dropdown-item d-flex align-items-center btn-theme rounded-pill"><i class="fa-solid fa-sun fa-fw me-2 opacity-75"></i>Light</button></li>
+                                        <li><button class="dropdown-item d-flex align-items-center btn-theme rounded-pill"><i class="fa-solid fa-moon fa-fw me-2 opacity-75"></i>Dark</i></button></li>
+                                        <li><button class="dropdown-item d-flex align-items-center btn-theme rounded-pill"><i class="fa-solid fa-circle-half-stroke fa-fw me-2 opacity-75"></i>Auto</button></li>                        
                                     </ul>
                                 </li>
                             </ul>
@@ -75,77 +323,172 @@
                 </div>
             </nav>
         </header>
-    
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header bg-default text-white">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-  
 
-        <div class="content bg-content py-3">
-            <div class="container">
+        <template id="template-hour">
+            <div class="calendar__hour">
+                <p class="label"></p>
+            </div>
+        </template>
+        <template id="template-day-hour">
+            <div class="calendar__hour calendar_day__hour">
+                <p class="label"></p>
+            </div>
+        </template>
+        <template id="template-event">
+            <div class="calendar__event">
+                <p class="label"></p>
+            </div>
+        </template>
+
+        <div class="container pt-2">
+            <!-- <div class="timetable">
                 <div class="row">
-                    <div class="col-2">
-                        <select class="form-select" aria-label="Class select">
-                            <option selected disabled>Class</option>
-                            <option value="TI-1">TI-1</option>
-                            <option value="TI-2">TI-2</option>
-                            <option value="TI-3">TI-3</option>
-                            <option value="TI-4">TI-4</option>
-                        </select>
+                    <div class="hours bg-content">
+                        
                     </div>
-                    <div class="col-2">
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            Launch demo modal
-                        </button>
-                    </div>
-                </div>
-                <div class="row pt-3">
-                    <div class="col">
-                        <table class="table table-bordered text-center" style="table-layout: fixed;">
-                            <thead>
-                                <tr id="table-date-row">
-                                    <th style="width: 5%; vertical-align: middle;"><i class="fa-solid fa-table text-default"></i></th>
-                                </tr>
-                            </thead>
-                            <tbody id="table-body">
-                            </tbody>
-                        </table>
+                    <div class="days row bg-success">
+                        <div class="day col bg-light">
+                            
+                        </div>
+                        <div class="day col bg-secondary">
+                            
+                        </div>
+                        <div class="day col bg-light">
+                            
+                        </div>
+                        <div class="day col bg-secondary">
+                            
+                        </div>
+                        <div class="day col bg-light">
+                            
+                        </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
+
+            <section class="my-day rounded">
+                <header class="pb-4">
+                    <!-- <div class="icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4.12352 12.5391H27.8888" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M21.9228 17.7464H21.9351" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M16.0062 17.7464H16.0185" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M10.0772 17.7464H10.0895" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M21.9228 22.9283H21.9351" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M16.0062 22.9283H16.0185" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M10.0772 22.9283H10.0895" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M21.3916 2.66675V7.05445" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M10.6207 2.66675V7.05445" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M21.651 4.77246H10.3613C6.4457 4.77246 4 6.95371 4 10.9632V23.0294C4 27.1019 6.4457 29.3335 10.3613 29.3335H21.6387C25.5666 29.3335 28 27.1397 28 23.1302V10.9632C28.0123 6.95371 25.579 4.77246 21.651 4.77246Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <h2>My Day</h2> -->
+                    <!-- <p>3 Events</p> -->
+                </header>
+                <div class="row">
+                    <div class="calendar col-auto">
+                        <div class="calendar__hour-grid">
+                            <template id="template-hour">
+                                <div class="calendar__hour">
+                                    <p class="label"></p>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                    <div class="calendar col w-20">
+                        <div class="calendar__hour-grid">
+                            <template id="template-hour">
+                                <div class="calendar__hour">
+                                    <p class="label"></p>
+                                </div>
+                            </template>
+                        </div>
+                        <div class="calendar__events">
+                            <template id="template-event">
+                                <div class="calendar__event">
+                                    <p class="label"></p>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                    <div class="calendar col w-20">
+                        <div class="calendar__hour-grid">
+                            <template id="template-hour">
+                                <div class="calendar__hour">
+                                    <p class="label"></p>
+                                </div>
+                            </template>
+                        </div>
+                        <div class="calendar__events">
+                            <template id="template-event">
+                                <div class="calendar__event">
+                                    <p class="label"></p>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                    <div class="calendar col w-20">
+                        <div class="calendar__hour-grid">
+                            <template id="template-hour">
+                                <div class="calendar__hour">
+                                    <p class="label"></p>
+                                </div>
+                            </template>
+                        </div>
+                        <div class="calendar__events">
+                            <template id="template-event">
+                                <div class="calendar__event">
+                                    <p class="label"></p>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                    <div class="calendar col w-20">
+                        <div class="calendar__hour-grid">
+                            <template id="template-hour">
+                                <div class="calendar__hour">
+                                    <p class="label"></p>
+                                </div>
+                            </template>
+                        </div>
+                        <div class="calendar__events">
+                            <template id="template-event">
+                                <div class="calendar__event">
+                                    <p class="label"></p>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                    <div class="calendar col w-20">
+                        <div class="calendar__hour-grid">
+                            <template id="template-hour">
+                                <div class="calendar__hour">
+                                    <p class="label"></p>
+                                </div>
+                            </template>
+                        </div>
+                        <div class="calendar__events">
+                            <template id="template-event">
+                                <div class="calendar__event">
+                                    <p class="label"></p>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
 
-        <div class="footer">
-
-        </div>
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>        <script src="./momentjs/moment.min.js"></script>
-
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <script>
-            'strict'
+            'use strict'
             const getPreferredTheme = () => {
                 var storedTheme = localStorage.getItem("theme");
                 if (storedTheme) {
                     return storedTheme;
                 }
-
-                return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                localStorage.setItem("theme", "auto");
+                return "auto";
             }
 
             const setTheme = function (theme) {
@@ -161,24 +504,16 @@
                 }
 
                 if (theme === "auto" && window.matchMedia("(prefers-color-scheme: dark)").matches || theme === "dark") {
-                    document.documentElement.style.setProperty("--dk-body-bg", "#212529");
-                    document.documentElement.style.setProperty("--dk-table-bg", "#1b1f22");
-                    document.documentElement.style.setProperty("--dk-text-color", "#fff");
                     document.documentElement.setAttribute("data-bs-theme", "dark");
                 } else if (theme === "auto" && window.matchMedia("(prefers-color-scheme: light)").matches || theme === "light") {
-                    document.documentElement.style.setProperty("--dk-body-bg", "#fff");
-                    document.documentElement.style.setProperty("--dk-table-bg", "#fff");
-                    document.documentElement.style.setProperty("--dk-text-color", "#000");
                     document.documentElement.setAttribute("data-bs-theme", "light");
                 }
             }
 
-            var preferredTheme = getPreferredTheme();
-            console.log("THEME: " + preferredTheme);
-            setTheme(preferredTheme);
+            var selectedTheme = getPreferredTheme();
+            setTheme(selectedTheme);
 
             window.addEventListener("DOMContentLoaded", (event) => {
-
                 // MediaQueryList
                 const darkModePreference = window.matchMedia("(prefers-color-scheme: dark)");
 
@@ -193,12 +528,6 @@
                         setTheme("light");
                     }
                 });
-
-                var selectedTheme = localStorage.getItem("theme");
-                if (!selectedTheme) {
-                    localStorage.setItem("theme", "auto");
-                    selectedTheme = "auto";
-                }
                 
                 document.querySelectorAll(".btn-theme").forEach(btn => {
                     if (btn.innerText.toLowerCase() == selectedTheme) {
@@ -221,394 +550,128 @@
                         var theme = btn.innerText.toLowerCase();
                         localStorage.setItem("theme", theme);
                         setTheme(theme);
-                        console.log("Selected theme: " + theme);
                     });
                 });
 
-                // const navbarIcon = document.querySelector("#navbar-icon");
-                // navbarIcon.addEventListener("mouseover", (event) => {
-                //     console.log("Test");
-                //     navbarIcon.classList.add("fa-bounce");
-                //     setTimeout(() => {
-                //         navbarIcon.classList.remove("fa-bounce");
-                //     }, 1000);
+                const startHour = 8;
+                const endHour = 18;
+                const resolution = 60;
+                const currentHour = 12;
+                const currentMinute = 15;
+
+                const hourTemplate = document.querySelector('#template-hour');
+                const hourGrids = document.querySelectorAll('.calendar__hour-grid');
+                hourGrids.forEach((hourGrid, index) => {
+                    for (let i = startHour; i < endHour; i++) {
+                        const hourNode = hourTemplate.content.firstElementChild.cloneNode(true);
+                        hourGrid.appendChild(hourNode);
+
+                        if (index == 0) {
+                            hourNode.querySelector('.label').innerText = `${i}`.padStart(2, '0');
+                        } else {
+                            hourNode.classList.add("calendar_day__hour");
+                        }
+
+                        if (currentHour === i) {
+                            hourNode.classList.add('active');
+                            hourNode.style.setProperty('--current-minute', currentMinute);
+                        }
+                    }
+                });
+
+                // for (let i = startHour; i < endHour; i++) {
+                //     const hourNode = hourTemplate.content.firstElementChild.cloneNode(true);
+                //     document.querySelector(".hours").appendChild(hourNode);
+
+                //     hourNode.querySelector('.label').innerText = `${i}`.padStart(2, '0');
+
+                //     if (currentHour === i) {
+                //         hourNode.classList.add('active');
+                //         hourNode.style.setProperty('--current-minute', currentMinute);
+                //     }
+                // }
+
+                // document.querySelectorAll(".day").forEach(day => {
+                //     for (let i = startHour; i < endHour; i++) {
+                //     const hourNode = hourTemplate.content.firstElementChild.cloneNode(true);
+                //     day.appendChild(hourNode);
+
+                //     hourNode.querySelector('.label').remove();
+
+                //     if (currentHour === i) {
+                //         hourNode.classList.add('active');
+                //         hourNode.style.setProperty('--current-minute', currentMinute);
+                //     }
+                // }
                 // });
 
-                const data = {
-                    start_time: "08:00",
-                    end_time: "19:00",
-                    lessons: [
-                        {
-                            displayname: "1.",
-                            start_time: "08:00",
-                            end_time: "09:30"
-                        },
-                        {
-                            displayname: "2.",
-                            start_time: "09:45",
-                            end_time: "11:15"
-                        },
-                        {
-                            displayname: "3.",
-                            start_time: "11:30",
-                            end_time: "13:00"
-                        },
-                        {
-                            displayname: "4.",
-                            start_time: "14:00",
-                            end_time: "15:30"
-                        },
-                        {
-                            displayname: "5.",
-                            start_time: "15:45",
-                            end_time: "17:15"
-                        },
-                        {
-                            displayname: "6.",
-                            start_time: "17:30",
-                            end_time: "19:00"
-                        }
-                    ],
-                    breaks: [],
-                    days: [
-                        {
-                            date: "2022-11-21",
-                            lessons: [
-                                {
-                                    displayname: "WebAnw2",
-                                    start_time: "08:00",
-                                    end_time: "11:15"
-                                },
-                                {
-                                    displayname: "SigSys2",
-                                    start_time: "11:30",
-                                    end_time: "13:00"
-                                },
-                                {
-                                    displayname: "Pr_ErDiSys",
-                                    start_time: "15:45",
-                                    end_time: "17:15"
-                                }
-                            ]
-                        },
-                        {
-                            date: "2022-11-22",
-                            lessons: [
-                                {
-                                    displayname: "Numerik",
-                                    start_time: "11:30",
-                                    end_time: "13:00"
-                                }
-                            ]
-                        },
-                        {
-                            date: "2022-11-23",
-                            lessons: [
-                                {
-                                    displayname: "Pr_Bildver",
-                                    start_time: "08:00",
-                                    end_time: "09:30",
-                                    canelled: true
-                                },
-                                {
-                                    displayname: "BetSich",
-                                    start_time: "09:45",
-                                    end_time: "11:15"
-                                },
-                                {
-                                    displayname: "Bildver",
-                                    start_time: "11:30",
-                                    end_time: "13:00"
-                                },
-                                {
-                                    displayname: "ErDisSys",
-                                    start_time: "14:00",
-                                    end_time: "15:30"
-                                }
-                            ]
-                        },
-                        {
-                            date: "2022-11-24",
-                            lessons: [
-                                {
-                                    displayname: "Pr_BetSich",
-                                    start_time: "08:00",
-                                    end_time: "09:30"
-                                },
-                                {
-                                    displayname: "BetSich",
-                                    start_time: "09:45",
-                                    end_time: "11:15"
-                                },
-                                {
-                                    displayname: "SoftEng",
-                                    start_time: "14:00",
-                                    end_time: "17:15"
-                                }
-                            ]
-                        },
-                        {
-                            date: "2022-11-25",
-                            lessons: []
-                        },
-                        {
-                            date: "2022-11-26",
-                            lessons: []
-                        }
-                    ]
-                }
+                const events = [
+                    {
+                        start: 8,
+                        end: 10,
+                        title: 'Focus Time',
+                        past: true,
+                    },
+                    {
+                        start: 10.5,
+                        end: 11.5,
+                        title: '1:1 with Tamika',
+                        past: true,
+                    },
+                    {
+                        start: 14,
+                        end: 15,
+                        title: 'Technical Weekly',
+                    },
+                ];
 
-                const tableBody = document.querySelector("#table-body");
+                const eventTemplate = document.querySelector('#template-event');
+                const calendarEventsElements = document.querySelectorAll('.calendar__events');
+                const calendarElements = document.querySelectorAll('.calendar');
 
-                let startTime = moment(data.start_time, "HH:mm");
-                let endTime = moment(data.end_time, "HH:mm");
-                let duration = moment.duration(endTime.diff(startTime));
-                let minutes = duration.asMinutes() - 1;
-                console.log(minutes);
-
-                for (let i = 0; i <= minutes; i++) {
-                    const tr = document.createElement("tr");
-                    tr.setAttribute("id", "time-row-" + moment(startTime).format("HH:mm"));
-                    tableBody.appendChild(tr);
-
-                    startTime = moment(startTime).add(1, "minutes");
-                }
-
-                // Calculate break times
-                data.breaks = getBreakTimes(data.start_time, data.end_time, data.lessons);
-                console.log(data.breaks);
-
-                data.lessons.forEach((element) => {
-                    const tr = document.querySelector("#time-row-" + element.start_time.replace(":", "\\:"));
-                    // console.log(tr);
-                    let lessonMinutes = getMinutesBtwTimes(element.start_time, element.end_time);
-                    // console.log(lessonMinutes);
-
-                    const tdTime = document.createElement("td");
-                    tdTime.setAttribute("rowspan", lessonMinutes);
-
-                    const divStart = document.createElement("div");
-                    const spanStart = document.createElement("span");
-                    spanStart.classList.add("text-body-secondary");
-                    spanStart.innerText = element.start_time;
-                    divStart.appendChild(spanStart);
-                    tdTime.appendChild(divStart);
-
-                    const divDispName = document.createElement("div");
-                    divDispName.classList.add("py-3");
-                    const spanDispName = document.createElement("span");
-                    spanDispName.classList.add("fw-bold");
-                    spanDispName.innerText = element.displayname;
-                    divDispName.appendChild(spanDispName);
-                    tdTime.appendChild(divDispName);
-
-                    const divEnd = document.createElement("div");
-                    const spanEnd = document.createElement("span");
-                    spanEnd.classList.add("text-body-secondary");
-                    spanEnd.innerText = element.end_time;
-                    divEnd.appendChild(spanEnd);
-                    tdTime.appendChild(divEnd);
-
-                    tr.appendChild(tdTime);
-                    // tr.appendChild(tdTime.cloneNode());
-                    // tr.appendChild(tdTime.cloneNode());
-                    // tr.appendChild(tdTime.cloneNode());
-                    // tr.appendChild(tdTime.cloneNode());
-                    // tr.appendChild(tdTime.cloneNode());
-                    // tr.appendChild(tdTime.cloneNode());
+                calendarElements.forEach(calendar => {
+                    calendar.style.setProperty('--start-hour', startHour);
+                    calendar.style.setProperty('--end-hour', endHour);
+                    calendar.style.setProperty('--resolution', resolution);
                 });
 
-                data.breaks.forEach((element) => {
-                    const tr = document.querySelector("#time-row-" + element.start_time.replace(":", "\\:"));
-                    // console.log(tr);
-                    let breakMinutes = getMinutesBtwTimes(element.start_time, element.end_time);
-                    // console.log(breakMinutes);
+                calendarEventsElements.forEach(calendarEvents => {
+                    events.forEach((event) => {
+                        const eventNode = eventTemplate.content.firstElementChild.cloneNode(true);
+                        calendarEvents.appendChild(eventNode);
 
-                    const tdTime = document.createElement("td");
-                    tdTime.setAttribute("rowspan", breakMinutes);
+                        eventNode.querySelector('.label').innerText = event.title;
+                        eventNode.style.setProperty('--start', event.start);
+                        eventNode.style.setProperty('--end', event.end);
 
-                    tr.appendChild(tdTime);
-                    // tr.appendChild(tdTime.cloneNode());
-                    // tr.appendChild(tdTime.cloneNode());
-                    // tr.appendChild(tdTime.cloneNode());
-                    // tr.appendChild(tdTime.cloneNode());
-                    // tr.appendChild(tdTime.cloneNode());
-                    // tr.appendChild(tdTime.cloneNode());
-                });
-
-                data.days.forEach((day) => {
-                    // Add day to date row header
-                    const dateRow = document.querySelector("#table-date-row");
-                    // console.log(dateRow);
-
-                    let dayDate = moment(day.date, "YYYY-MM-DD");
-
-                    let thDay = document.createElement("th");
-
-                    const divDate = document.createElement("div");
-                    const spanDate = document.createElement("span");
-                    spanDate.classList.add("text-body-emphasis");
-                    spanDate.innerText = moment(dayDate).format("DD.MM.");
-                    divDate.appendChild(spanDate);
-                    thDay.appendChild(divDate);
-
-                    const divDayOfWeek = document.createElement("div");
-                    const spanDayOfWeek = document.createElement("span");
-                    spanDayOfWeek.classList.add("text-body-secondary");
-                    spanDayOfWeek.innerText = moment(dayDate).format("dddd");
-                    divDayOfWeek.appendChild(spanDayOfWeek);
-                    thDay.appendChild(divDayOfWeek);
-
-                    dateRow.appendChild(thDay);
-
-                    // Add day lessons
-                    day.lessons.forEach((lesson) => {
-                        const tr = document.querySelector("#time-row-" + lesson.start_time.replace(":", "\\:"));
-                        console.log(tr);
-                        let lessonMinutes = getMinutesBtwTimes(lesson.start_time, lesson.end_time);
-                        // console.log(lessonMinutes);
-
-                        const tdTime = document.createElement("td");
-                        tdTime.setAttribute("rowspan", lessonMinutes);
-                        tdTime.classList.add("lesson");
-
-                        if (lesson.canelled) {
-                            tdTime.classList.add("cancelled");
-                        }
-
-                        // const divStart = document.createElement("div");
-                        // const spanStart = document.createElement("span");
-                        // spanStart.classList.add("text-white-50");
-                        // spanStart.innerText = element.start_time;
-                        // divStart.appendChild(spanStart);
-                        // tdTime.appendChild(divStart);
-
-                        const divDispName = document.createElement("div");
-                        divDispName.classList.add("py-3");
-                        const spanDispName = document.createElement("span");
-                        spanDispName.classList.add("fw-bold");
-                        spanDispName.classList.add("text-body-emphasis");
-                        spanDispName.innerText = lesson.displayname;
-                        divDispName.appendChild(spanDispName);
-                        tdTime.appendChild(divDispName);
-
-                        // const divEnd = document.createElement("div");
-                        // const spanEnd = document.createElement("span");
-                        // spanEnd.classList.add("text-white-50");
-                        // spanEnd.innerText = element.end_time;
-                        // divEnd.appendChild(spanEnd);
-                        // tdTime.appendChild(divEnd);
-
-                        tr.appendChild(tdTime);
-                    });
-
-                    data.breaks.forEach((breakObj) => {
-                        if (!isBreakInLesson(breakObj, day.lessons)) {
-                            const tr = document.querySelector("#time-row-" + breakObj.start_time.replace(":", "\\:"));
-                            console.log(tr);
-                            let breakMinutes = getMinutesBtwTimes(breakObj.start_time, breakObj.end_time);
-
-                            const tdTime = document.createElement("td");
-                            tdTime.setAttribute("rowspan", breakMinutes);
-
-                            tr.appendChild(tdTime);
-                        }
-                    });
-
-                    data.lessons.forEach((lessonObj) => {
-                        if (!isLessonInLesson(lessonObj, day.lessons)) {
-                            const tr = document.querySelector("#time-row-" + lessonObj.start_time.replace(":", "\\:"));
-                            console.log(tr);
-                            let lessonMinutes = getMinutesBtwTimes(lessonObj.start_time, lessonObj.end_time);
-
-                            const tdTime = document.createElement("td");
-                            tdTime.setAttribute("rowspan", lessonMinutes);
-
-                            tr.appendChild(tdTime);
-                            console.log("Added empty lesson on " + day.date);
+                        if (event.past) {
+                            eventNode.classList.add('past');
                         }
                     });
                 });
+
+                // document.querySelectorAll(".day").forEach(day => {
+                //     day.style.setProperty('--start-hour', startHour);
+                //     day.style.setProperty('--end-hour', endHour);
+                //     day.style.setProperty('--resolution', resolution);
+                // });
+
+                // document.querySelectorAll(".day").forEach(day => {
+                //     events.forEach((event) => {
+                //         const eventNode = eventTemplate.content.firstElementChild.cloneNode(true);
+                //         day.appendChild(eventNode);
+
+                //         eventNode.querySelector('.label').innerText = event.title;
+                //         eventNode.style.setProperty('--start', event.start);
+                //         eventNode.style.setProperty('--end', event.end);
+
+                //         if (event.past) {
+                //             eventNode.classList.add('past');
+                //         }
+                //     });
+                // });
+                
             });
-
-            function isBreakInLesson(breakObj, lessons) {
-                let breakStart = moment(breakObj.start_time, "HH:mm");
-                let breakEnd = moment(breakObj.end_time, "HH:mm");
-                let breakInLesson = false;
-
-                lessons.forEach((lesson) => {
-                    let lessonStart = moment(lesson.start_time, "HH:mm");
-                    let lessonEnd = moment(lesson.end_time, "HH:mm");
-                    if (breakStart.isAfter(lessonStart) && breakEnd.isBefore(lessonEnd)) {
-                        // console.log("------------ true " + lesson.displayname + " " + breakObj.start_time + " - " + breakObj.end_time);
-                        breakInLesson = true;
-                    }
-                });
-
-                return breakInLesson;
-            }
-
-            function isLessonInLesson(lessonObj, lessons) {
-                let startTime = moment(lessonObj.start_time, "HH:mm");
-                let endTime = moment(lessonObj.end_time, "HH:mm");
-                let lessonInLesson = false;
-
-                lessons.forEach((lesson) => {
-                    let lessonStart = moment(lesson.start_time, "HH:mm");
-                    let lessonEnd = moment(lesson.end_time, "HH:mm");
-                    if (startTime.isSameOrAfter(lessonStart) && endTime.isSameOrBefore(lessonEnd)) {
-                        // console.log("------------ true " + lesson.displayname + " " + lessonObj.start_time + " - " + lessonObj.end_time);
-                        lessonInLesson = true;
-                    }
-                });
-
-                return lessonInLesson;
-            }
-
-            function getMinutesBtwTimes(time1, time2) {
-                let begin = moment(time1, "HH:mm");
-                let end = moment(time2, "HH:mm");
-                let duration = moment.duration(end.diff(begin));
-                return duration.asMinutes();
-            }
-
-            function getBreakTimes(startTime, endTime, lessons) {
-                let breaks = [];
-
-                // Check if there is a break before first lesson
-                let breakBeforeMinutes = getMinutesBtwTimes(startTime, lessons[0].start_time);
-                if (breakBeforeMinutes > 0) {
-                    breakObject = {
-                            start_time: startTime,
-                            end_time: lessons[0].start_time
-                        };
-                        breaks.push(breakObject);
-                }
-
-                // Get breaks between lessons
-                for (let i = 0; i < lessons.length - 1; i++) {
-                    let breakMinutes = getMinutesBtwTimes(lessons[i].end_time, lessons[i+1].start_time);
-                    if (breakMinutes > 0) {
-                        breakObject = {
-                            start_time: lessons[i].end_time,
-                            end_time: lessons[i+1].start_time
-                        };
-                        breaks.push(breakObject);
-                    }
-                }
-
-                // Check if there is a break past last lesson
-                let breakPastMinutes = getMinutesBtwTimes(lessons[lessons.length - 1].end_time, endTime);
-                if (breakPastMinutes > 0) {
-                    breakObject = {
-                            start_time: lessons[lessons.length - 1].end_time,
-                            end_time: endTime
-                        };
-                        breaks.push(breakObject);
-                }
-
-                return breaks;
-            }
         </script>
     </body>
 </html>

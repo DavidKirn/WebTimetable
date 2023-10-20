@@ -20,8 +20,9 @@
     --tc-default-subtle-bg: #06281e;
     --tc-default-subtle-border-color: #0d503c;
     --tc-default-box-shadow: 0 0 0 .25rem rgba(19, 121, 91, .25);
+    --tc-default-text-color: #f1f1f1;
     --tc-content-bg: #222222;
-    --tc-content-border-color: transparent;
+    --tc-content-border-color: #2E2E2E;
     --tc-input-bg: #1a1a1a;
     --tc-input-border-color: #2E2E2E;
     --tc-separator-border-color: #404040;
@@ -38,6 +39,7 @@
     --tc-default-subtle-bg: #a6e9d5;
     --tc-default-subtle-border-color: #79dfc1;
     --tc-default-box-shadow: 0 0 0 .25rem rgba(19, 121, 91, .45);
+    --tc-default-text-color: #0f0f0f;
     --tc-content-bg: #f8f8f8;
     --tc-content-border-color: #d3d3d3;
     --tc-input-bg: #fff;
@@ -192,4 +194,8 @@ body {
 
 #notifications {
     font-size: small;
+}
+
+.navbar-nav {
+    --bs-nav-link-color: var(--tc-default-text-color);
 }

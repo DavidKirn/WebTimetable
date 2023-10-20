@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>timecron</title>
+        <link type="image/x-icon" href="./favicon.ico">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-expand-lg bd-navbar sticky-top bg-default">
+            <nav class="container-xxl bd-gutter flex-wrap flex-lg-nowrap" aria-label="Main navigation">
+                <a class="navbar-brand p-0 me-0 me-lg-2" id="navbar-icon" href="/" aria-label="Bootstrap">
+                    <svg class="d-block my-1" xmlns="http://www.w3.org/2000/svg" width="40" height="32" viewBox="0 0 512 512" role="img">
+                        <path fill-rule="evenodd" clip-rule="evenodd" fill="currentColor" d="M64 256V160H224v96H64zm0 64H224v96H64V320zm224 96V320H448v96H288zM448 256H288V160H448v96zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64z"/>
+                    </svg>
+                </a>
+                <div class="bd-navbar-toggle">
+                    <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#bdSidebar" aria-controls="bdSidebar" aria-label="Toggle docs navigation">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="bi" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"></path>
+                        </svg>
+                        <span class="d-none fs-6 pe-1">Browse</span>
+                  </button>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <div class="offcanvas-lg offcanvas-end flex-grow-1" tabindex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel" data-bs-scroll="true">
+                        <div class="offcanvas-header px-4 pb-0">
+                            <h5 class="offcanvas-title text-white" id="bdNavbarOffcanvasLabel">Bootstrap</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#bdNavbar"></button>
+                        </div>
+                        
+                        <div class="offcanvas-body p-4 pt-0 p-lg-0">
+                            <ul class="navbar-nav flex-row flex-wrap bd-navbar-nav">
+                                <li class="nav-item px-1 active">
+                                    <a class="nav-link text-white px-3" href="">Timetable</a>
+                                </li>
+                                <li class="nav-item px-1">
+                                    <a class="nav-link text-white px-3" href="">Rooms</a>
+                                </li>
+                            </ul>
+                            <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
+                                <li class="nav-item dropdown">
+                                    <button class="btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-display="static">
+                                        Profil
+                                    </button>
+                                  
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li><button class="dropdown-item d-flex align-items-center"><i class="fa-solid fa-sun fa-fw me-2 opacity-50"></i>Light</button></li>
+                                        <li><button class="dropdown-item d-flex align-items-center active"><i class="fa-solid fa-moon fa-fw me-2 opacity-50"></i>Dark<i class="fa-solid fa-check fa-fw ms-auto"></i></button></li>
+                                        <li><button class="dropdown-item d-flex align-items-center"><i class="fa-solid fa-circle-half-stroke fa-fw me-2 opacity-50"></i>Auto</button></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
+                                    <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div>
+                                    <hr class="d-lg-none my-2 text-white-50">
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <button class="btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle d-flex align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-display="static">
+                                        <i class="fa-solid fa-circle-half-stroke fa-fw my-1" id="nav-icon-active-theme"></i>
+                                    </button>
+                                  
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li><button class="dropdown-item d-flex align-items-center btn-theme"><i class="fa-solid fa-sun fa-fw me-2 opacity-50"></i>Light</button></li>
+                                        <li><button class="dropdown-item d-flex align-items-center btn-theme"><i class="fa-solid fa-moon fa-fw me-2 opacity-50"></i>Dark</i></button></li>
+                                        <li><button class="dropdown-item d-flex align-items-center btn-theme"><i class="fa-solid fa-circle-half-stroke fa-fw me-2 opacity-50"></i>Auto</button></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+    
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-default text-white">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+
+        <div class="content bg-content py-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-2">
+                        <select class="form-select" aria-label="Class select">
+                            <option selected disabled>Class</option>
+                            <option value="TI-1">TI-1</option>
+                            <option value="TI-2">TI-2</option>
+                            <option value="TI-3">TI-3</option>
+                            <option value="TI-4">TI-4</option>
+                        </select>
+                    </div>
+                    <div class="col-2">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Launch demo modal
+                        </button>
+                    </div>
+                </div>
+                <div class="row pt-3">
+                    <div class="col">
+                        <table class="table table-bordered text-center" style="table-layout: fixed;">
+                            <thead>
+                                <tr id="table-date-row">
+                                    <th style="width: 5%; vertical-align: middle;"><i class="fa-solid fa-table text-default"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-body">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>        <script src="./momentjs/moment.min.js"></script>
+
+        <script>
+            'strict'
+            const getPreferredTheme = () => {
+                var storedTheme = localStorage.getItem("theme");
+                if (storedTheme) {
+                    return storedTheme;
+                }
+
+                return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+
+            const setTheme = function (theme) {
+                switch (theme) {
+                    case "light":
+                        document.querySelector("#nav-icon-active-theme").className = "fa-solid fa-sun fa-fw my-1";
+                        break;
+                    case "dark":
+                        document.querySelector("#nav-icon-active-theme").className = "fa-solid fa-moon fa-fw my-1";
+                        break;
+                    default:
+                        document.querySelector("#nav-icon-active-theme").className = "fa-solid fa-circle-half-stroke fa-fw my-1";
+                }
+
+                if (theme === "auto" && window.matchMedia("(prefers-color-scheme: dark)").matches || theme === "dark") {
+                    document.documentElement.style.setProperty("--dk-body-bg", "#212529");
+                    document.documentElement.style.setProperty("--dk-table-bg", "#1b1f22");
+                    document.documentElement.style.setProperty("--dk-text-color", "#fff");
+                    document.documentElement.setAttribute("data-bs-theme", "dark");
+                } else if (theme === "auto" && window.matchMedia("(prefers-color-scheme: light)").matches || theme === "light") {
+                    document.documentElement.style.setProperty("--dk-body-bg", "#fff");
+                    document.documentElement.style.setProperty("--dk-table-bg", "#fff");
+                    document.documentElement.style.setProperty("--dk-text-color", "#000");
+                    document.documentElement.setAttribute("data-bs-theme", "light");
+                }
+            }
+
+            var preferredTheme = getPreferredTheme();
+            console.log("THEME: " + preferredTheme);
+            setTheme(preferredTheme);
+
+            window.addEventListener("DOMContentLoaded", (event) => {
+
+                // MediaQueryList
+                const darkModePreference = window.matchMedia("(prefers-color-scheme: dark)");
+
+                // recommended method for newer browsers: specify event-type as first argument
+                darkModePreference.addEventListener("change", e => {
+                    if (localStorage.getItem("theme") !== "auto") {
+                        return;
+                    }
+                    if (e.matches) {
+                        setTheme("dark");
+                    } else {
+                        setTheme("light");
+                    }
+                });
+
+                var selectedTheme = localStorage.getItem("theme");
+                if (!selectedTheme) {
+                    localStorage.setItem("theme", "auto");
+                    selectedTheme = "auto";
+                }
+                
+                document.querySelectorAll(".btn-theme").forEach(btn => {
+                    if (btn.innerText.toLowerCase() == selectedTheme) {
+                        const iconActiveTheme = document.createElement("i");
+                        iconActiveTheme.id = "icon-active-theme";
+                        iconActiveTheme.className = "fa-solid fa-check fa-fw ms-auto";
+                        btn.appendChild(iconActiveTheme);
+                        btn.classList.add("active");
+                    }
+
+                    btn.addEventListener("click", () => {
+                        if (btn.classList.contains("active")) {
+                            return;
+                        }
+                        document.querySelectorAll(".btn-theme").forEach(btn => btn.classList.remove("active"));
+                        btn.classList.add("active");
+                        var iconActiveTheme = document.querySelector("#icon-active-theme");
+                        btn.appendChild(iconActiveTheme.cloneNode(true));
+                        iconActiveTheme.remove();
+                        var theme = btn.innerText.toLowerCase();
+                        localStorage.setItem("theme", theme);
+                        setTheme(theme);
+                        console.log("Selected theme: " + theme);
+                    });
+                });
+
+                // const navbarIcon = document.querySelector("#navbar-icon");
+                // navbarIcon.addEventListener("mouseover", (event) => {
+                //     console.log("Test");
+                //     navbarIcon.classList.add("fa-bounce");
+                //     setTimeout(() => {
+                //         navbarIcon.classList.remove("fa-bounce");
+                //     }, 1000);
+                // });
+
+                const data = {
+                    start_time: "08:00",
+                    end_time: "19:00",
+                    lessons: [
+                        {
+                            displayname: "1.",
+                            start_time: "08:00",
+                            end_time: "09:30"
+                        },
+                        {
+                            displayname: "2.",
+                            start_time: "09:45",
+                            end_time: "11:15"
+                        },
+                        {
+                            displayname: "3.",
+                            start_time: "11:30",
+                            end_time: "13:00"
+                        },
+                        {
+                            displayname: "4.",
+                            start_time: "14:00",
+                            end_time: "15:30"
+                        },
+                        {
+                            displayname: "5.",
+                            start_time: "15:45",
+                            end_time: "17:15"
+                        },
+                        {
+                            displayname: "6.",
+                            start_time: "17:30",
+                            end_time: "19:00"
+                        }
+                    ],
+                    breaks: [],
+                    days: [
+                        {
+                            date: "2022-11-21",
+                            lessons: [
+                                {
+                                    displayname: "WebAnw2",
+                                    start_time: "08:00",
+                                    end_time: "11:15"
+                                },
+                                {
+                                    displayname: "SigSys2",
+                                    start_time: "11:30",
+                                    end_time: "13:00"
+                                },
+                                {
+                                    displayname: "Pr_ErDiSys",
+                                    start_time: "15:45",
+                                    end_time: "17:15"
+                                }
+                            ]
+                        },
+                        {
+                            date: "2022-11-22",
+                            lessons: [
+                                {
+                                    displayname: "Numerik",
+                                    start_time: "11:30",
+                                    end_time: "13:00"
+                                }
+                            ]
+                        },
+                        {
+                            date: "2022-11-23",
+                            lessons: [
+                                {
+                                    displayname: "Pr_Bildver",
+                                    start_time: "08:00",
+                                    end_time: "09:30",
+                                    canelled: true
+                                },
+                                {
+                                    displayname: "BetSich",
+                                    start_time: "09:45",
+                                    end_time: "11:15"
+                                },
+                                {
+                                    displayname: "Bildver",
+                                    start_time: "11:30",
+                                    end_time: "13:00"
+                                },
+                                {
+                                    displayname: "ErDisSys",
+                                    start_time: "14:00",
+                                    end_time: "15:30"
+                                }
+                            ]
+                        },
+                        {
+                            date: "2022-11-24",
+                            lessons: [
+                                {
+                                    displayname: "Pr_BetSich",
+                                    start_time: "08:00",
+                                    end_time: "09:30"
+                                },
+                                {
+                                    displayname: "BetSich",
+                                    start_time: "09:45",
+                                    end_time: "11:15"
+                                },
+                                {
+                                    displayname: "SoftEng",
+                                    start_time: "14:00",
+                                    end_time: "17:15"
+                                }
+                            ]
+                        },
+                        {
+                            date: "2022-11-25",
+                            lessons: []
+                        },
+                        {
+                            date: "2022-11-26",
+                            lessons: []
+                        }
+                    ]
+                }
+
+                const tableBody = document.querySelector("#table-body");
+
+                let startTime = moment(data.start_time, "HH:mm");
+                let endTime = moment(data.end_time, "HH:mm");
+                let duration = moment.duration(endTime.diff(startTime));
+                let minutes = duration.asMinutes() - 1;
+                console.log(minutes);
+
+                for (let i = 0; i <= minutes; i++) {
+                    const tr = document.createElement("tr");
+                    tr.setAttribute("id", "time-row-" + moment(startTime).format("HH:mm"));
+                    tableBody.appendChild(tr);
+
+                    startTime = moment(startTime).add(1, "minutes");
+                }
+
+                // Calculate break times
+                data.breaks = getBreakTimes(data.start_time, data.end_time, data.lessons);
+                console.log(data.breaks);
+
+                data.lessons.forEach((element) => {
+                    const tr = document.querySelector("#time-row-" + element.start_time.replace(":", "\\:"));
+                    // console.log(tr);
+                    let lessonMinutes = getMinutesBtwTimes(element.start_time, element.end_time);
+                    // console.log(lessonMinutes);
+
+                    const tdTime = document.createElement("td");
+                    tdTime.setAttribute("rowspan", lessonMinutes);
+
+                    const divStart = document.createElement("div");
+                    const spanStart = document.createElement("span");
+                    spanStart.classList.add("text-body-secondary");
+                    spanStart.innerText = element.start_time;
+                    divStart.appendChild(spanStart);
+                    tdTime.appendChild(divStart);
+
+                    const divDispName = document.createElement("div");
+                    divDispName.classList.add("py-3");
+                    const spanDispName = document.createElement("span");
+                    spanDispName.classList.add("fw-bold");
+                    spanDispName.innerText = element.displayname;
+                    divDispName.appendChild(spanDispName);
+                    tdTime.appendChild(divDispName);
+
+                    const divEnd = document.createElement("div");
+                    const spanEnd = document.createElement("span");
+                    spanEnd.classList.add("text-body-secondary");
+                    spanEnd.innerText = element.end_time;
+                    divEnd.appendChild(spanEnd);
+                    tdTime.appendChild(divEnd);
+
+                    tr.appendChild(tdTime);
+                    // tr.appendChild(tdTime.cloneNode());
+                    // tr.appendChild(tdTime.cloneNode());
+                    // tr.appendChild(tdTime.cloneNode());
+                    // tr.appendChild(tdTime.cloneNode());
+                    // tr.appendChild(tdTime.cloneNode());
+                    // tr.appendChild(tdTime.cloneNode());
+                });
+
+                data.breaks.forEach((element) => {
+                    const tr = document.querySelector("#time-row-" + element.start_time.replace(":", "\\:"));
+                    // console.log(tr);
+                    let breakMinutes = getMinutesBtwTimes(element.start_time, element.end_time);
+                    // console.log(breakMinutes);
+
+                    const tdTime = document.createElement("td");
+                    tdTime.setAttribute("rowspan", breakMinutes);
+
+                    tr.appendChild(tdTime);
+                    // tr.appendChild(tdTime.cloneNode());
+                    // tr.appendChild(tdTime.cloneNode());
+                    // tr.appendChild(tdTime.cloneNode());
+                    // tr.appendChild(tdTime.cloneNode());
+                    // tr.appendChild(tdTime.cloneNode());
+                    // tr.appendChild(tdTime.cloneNode());
+                });
+
+                data.days.forEach((day) => {
+                    // Add day to date row header
+                    const dateRow = document.querySelector("#table-date-row");
+                    // console.log(dateRow);
+
+                    let dayDate = moment(day.date, "YYYY-MM-DD");
+
+                    let thDay = document.createElement("th");
+
+                    const divDate = document.createElement("div");
+                    const spanDate = document.createElement("span");
+                    spanDate.classList.add("text-body-emphasis");
+                    spanDate.innerText = moment(dayDate).format("DD.MM.");
+                    divDate.appendChild(spanDate);
+                    thDay.appendChild(divDate);
+
+                    const divDayOfWeek = document.createElement("div");
+                    const spanDayOfWeek = document.createElement("span");
+                    spanDayOfWeek.classList.add("text-body-secondary");
+                    spanDayOfWeek.innerText = moment(dayDate).format("dddd");
+                    divDayOfWeek.appendChild(spanDayOfWeek);
+                    thDay.appendChild(divDayOfWeek);
+
+                    dateRow.appendChild(thDay);
+
+                    // Add day lessons
+                    day.lessons.forEach((lesson) => {
+                        const tr = document.querySelector("#time-row-" + lesson.start_time.replace(":", "\\:"));
+                        console.log(tr);
+                        let lessonMinutes = getMinutesBtwTimes(lesson.start_time, lesson.end_time);
+                        // console.log(lessonMinutes);
+
+                        const tdTime = document.createElement("td");
+                        tdTime.setAttribute("rowspan", lessonMinutes);
+                        tdTime.classList.add("lesson");
+
+                        if (lesson.canelled) {
+                            tdTime.classList.add("cancelled");
+                        }
+
+                        // const divStart = document.createElement("div");
+                        // const spanStart = document.createElement("span");
+                        // spanStart.classList.add("text-white-50");
+                        // spanStart.innerText = element.start_time;
+                        // divStart.appendChild(spanStart);
+                        // tdTime.appendChild(divStart);
+
+                        const divDispName = document.createElement("div");
+                        divDispName.classList.add("py-3");
+                        const spanDispName = document.createElement("span");
+                        spanDispName.classList.add("fw-bold");
+                        spanDispName.classList.add("text-body-emphasis");
+                        spanDispName.innerText = lesson.displayname;
+                        divDispName.appendChild(spanDispName);
+                        tdTime.appendChild(divDispName);
+
+                        // const divEnd = document.createElement("div");
+                        // const spanEnd = document.createElement("span");
+                        // spanEnd.classList.add("text-white-50");
+                        // spanEnd.innerText = element.end_time;
+                        // divEnd.appendChild(spanEnd);
+                        // tdTime.appendChild(divEnd);
+
+                        tr.appendChild(tdTime);
+                    });
+
+                    data.breaks.forEach((breakObj) => {
+                        if (!isBreakInLesson(breakObj, day.lessons)) {
+                            const tr = document.querySelector("#time-row-" + breakObj.start_time.replace(":", "\\:"));
+                            console.log(tr);
+                            let breakMinutes = getMinutesBtwTimes(breakObj.start_time, breakObj.end_time);
+
+                            const tdTime = document.createElement("td");
+                            tdTime.setAttribute("rowspan", breakMinutes);
+
+                            tr.appendChild(tdTime);
+                        }
+                    });
+
+                    data.lessons.forEach((lessonObj) => {
+                        if (!isLessonInLesson(lessonObj, day.lessons)) {
+                            const tr = document.querySelector("#time-row-" + lessonObj.start_time.replace(":", "\\:"));
+                            console.log(tr);
+                            let lessonMinutes = getMinutesBtwTimes(lessonObj.start_time, lessonObj.end_time);
+
+                            const tdTime = document.createElement("td");
+                            tdTime.setAttribute("rowspan", lessonMinutes);
+
+                            tr.appendChild(tdTime);
+                            console.log("Added empty lesson on " + day.date);
+                        }
+                    });
+                });
+            });
+
+            function isBreakInLesson(breakObj, lessons) {
+                let breakStart = moment(breakObj.start_time, "HH:mm");
+                let breakEnd = moment(breakObj.end_time, "HH:mm");
+                let breakInLesson = false;
+
+                lessons.forEach((lesson) => {
+                    let lessonStart = moment(lesson.start_time, "HH:mm");
+                    let lessonEnd = moment(lesson.end_time, "HH:mm");
+                    if (breakStart.isAfter(lessonStart) && breakEnd.isBefore(lessonEnd)) {
+                        // console.log("------------ true " + lesson.displayname + " " + breakObj.start_time + " - " + breakObj.end_time);
+                        breakInLesson = true;
+                    }
+                });
+
+                return breakInLesson;
+            }
+
+            function isLessonInLesson(lessonObj, lessons) {
+                let startTime = moment(lessonObj.start_time, "HH:mm");
+                let endTime = moment(lessonObj.end_time, "HH:mm");
+                let lessonInLesson = false;
+
+                lessons.forEach((lesson) => {
+                    let lessonStart = moment(lesson.start_time, "HH:mm");
+                    let lessonEnd = moment(lesson.end_time, "HH:mm");
+                    if (startTime.isSameOrAfter(lessonStart) && endTime.isSameOrBefore(lessonEnd)) {
+                        // console.log("------------ true " + lesson.displayname + " " + lessonObj.start_time + " - " + lessonObj.end_time);
+                        lessonInLesson = true;
+                    }
+                });
+
+                return lessonInLesson;
+            }
+
+            function getMinutesBtwTimes(time1, time2) {
+                let begin = moment(time1, "HH:mm");
+                let end = moment(time2, "HH:mm");
+                let duration = moment.duration(end.diff(begin));
+                return duration.asMinutes();
+            }
+
+            function getBreakTimes(startTime, endTime, lessons) {
+                let breaks = [];
+
+                // Check if there is a break before first lesson
+                let breakBeforeMinutes = getMinutesBtwTimes(startTime, lessons[0].start_time);
+                if (breakBeforeMinutes > 0) {
+                    breakObject = {
+                            start_time: startTime,
+                            end_time: lessons[0].start_time
+                        };
+                        breaks.push(breakObject);
+                }
+
+                // Get breaks between lessons
+                for (let i = 0; i < lessons.length - 1; i++) {
+                    let breakMinutes = getMinutesBtwTimes(lessons[i].end_time, lessons[i+1].start_time);
+                    if (breakMinutes > 0) {
+                        breakObject = {
+                            start_time: lessons[i].end_time,
+                            end_time: lessons[i+1].start_time
+                        };
+                        breaks.push(breakObject);
+                    }
+                }
+
+                // Check if there is a break past last lesson
+                let breakPastMinutes = getMinutesBtwTimes(lessons[lessons.length - 1].end_time, endTime);
+                if (breakPastMinutes > 0) {
+                    breakObject = {
+                            start_time: lessons[lessons.length - 1].end_time,
+                            end_time: endTime
+                        };
+                        breaks.push(breakObject);
+                }
+
+                return breaks;
+            }
+        </script>
+    </body>
+</html>
