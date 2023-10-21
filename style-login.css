@@ -29,6 +29,7 @@
     --tc-icon-filter: invert(0);
     --tc-dropdown-hover-bg: var(--tc-default-subtle-bg);
     --tc-dropdown-active-bg: var(--tc-default);
+    --tc-timetable-border-color: #4d4d4d;
 }
 
 [data-bs-theme="light"] {
@@ -48,6 +49,7 @@
     --tc-icon-filter: invert(1);
     --tc-dropdown-hover-bg: var(--tc-default-subtle-bg);
     --tc-dropdown-active-bg: var(--tc-default);
+    --tc-timetable-border-color: #afafaf;
 }
 
 html {
