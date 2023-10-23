@@ -20,7 +20,6 @@
                 height: max-content;
                 padding-left: 0;
                 padding-right: 0;
-                border-left: 1px solid var(--tc-timetable-border-color);
             }
 
             .days {
@@ -40,10 +39,6 @@
                 position: relative;
             }
 
-            .day:last-child {
-                border-right: 1px solid var(--tc-timetable-border-color);
-            }
-
             .hour-grid,
             .day-hour-grid {
                 --hours: calc(var(--end-hour) - var(--start-hour));
@@ -55,7 +50,6 @@
                 grid-template-columns: 1fr;
                 grid-template-rows: repeat(var(--rows), 1fr);
                 border-top: 1px solid var(--tc-timetable-border-color);
-                border-bottom: 1px solid var(--tc-timetable-border-color);
             }
 
             .hour-grid-item {
@@ -126,10 +120,8 @@
                 );
 
                 padding: calc(6 / 8 * 16px);
-                /* border-radius: calc(2 / 3 * 24px); */
 
                 background: var(--tc-default);
-                border: 1px solid var(--tc-content-border-color);
                 cursor: pointer;
             }
 
@@ -141,11 +133,9 @@
                 display: grid;
                 grid-auto-columns: 1fr;
                 column-gap: .2rem;
-                /* grid-template-columns: repeat(3, minmax(0, 1fr)); */
                 grid-template-rows: repeat(var(--rows), 1fr);
 
-                /* left: calc(2 * var(--left-margin)); */
-                margin: 0 .2rem 0 .2rem;
+                margin: 0 .15rem 0 .15rem;
             }
 
             .day > * {
@@ -162,12 +152,7 @@
                 padding-bottom: .25rem;
                 padding-left: 0;
                 padding-right: 0;
-                border-top: 1px solid var(--tc-timetable-border-color);
                 border-left: 1px solid var(--tc-timetable-border-color);
-            }
-
-            .day-title:last-child {
-                border-right: 1px solid var(--tc-timetable-border-color);
             }
 
             .day-title > .date {
@@ -178,6 +163,14 @@
             .day-title > .weekday {
                 font-size: small;
                 color: var(--bs-secondary-color);
+            }
+
+            .month-title {
+                width: 5%;
+                height: max-content;
+                padding-left: 0;
+                padding-right: 0;
+                color: var(--tc-default-text-color);
             }
         </style>
     </head>
@@ -261,30 +254,30 @@
         </template>
 
         <div class="container py-2">
-            <div class="timetable bg-content p-2 rounded">
-                <div class="row">
-                    <div class="hours">
-                        
+            <div class="timetable bg-content rounded">
+                <div class="row d-flex align-items-center text-center">
+                    <div class="month-title">
+                        <span>Okt.</span>
                     </div>
                     <div class="days row">
                         <div class="day-title col">
-                            <span class="date">23</span>
+                            <span class="date">23.</span>
                             <span class="weekday">Monday</span>
                         </div>
                         <div class="day-title col">
-                            <span class="date">24</span>
+                            <span class="date">24.</span>
                             <span class="weekday">Tuesday</span>
                         </div>
                         <div class="day-title col">
-                            <span class="date">25</span>
+                            <span class="date">25.</span>
                             <span class="weekday">Wednesday</span>
                         </div>
                         <div class="day-title col">
-                            <span class="date">26</span>
+                            <span class="date">26.</span>
                             <span class="weekday">Thursday</span>
                         </div>
                         <div class="day-title col">
-                            <span class="date">27</span>
+                            <span class="date">27.</span>
                             <span class="weekday">Friday</span>
                         </div>
                     </div>
