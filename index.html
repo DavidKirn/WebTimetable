@@ -303,6 +303,18 @@
                 </div>
             </div>
         </template>
+        <template id="template-day-title">
+            <div class="day-title col">
+                <span class="date"></span>
+                <span class="weekday"></span>
+            </div>
+        </template>
+        <template id="template-day-grid">
+            <div class="day col">
+                <div class="day-hour-grid"></div>
+                <div class="day-event-grid"></div>
+            </div>
+        </template>
 
         <div class="container-md py-2">
             <div class="timetable bg-content border-content rounded">
@@ -310,54 +322,14 @@
                     <div class="month-title">
                         <span>Okt.</span>
                     </div>
-                    <div class="days row">
-                        <div class="day-title col">
-                            <span class="date">23.</span>
-                            <span class="weekday">Monday</span>
-                        </div>
-                        <div class="day-title col">
-                            <span class="date">24.</span>
-                            <span class="weekday">Tuesday</span>
-                        </div>
-                        <div class="day-title col">
-                            <span class="date">25.</span>
-                            <span class="weekday">Wednesday</span>
-                        </div>
-                        <div class="day-title col">
-                            <span class="date">26.</span>
-                            <span class="weekday">Thursday</span>
-                        </div>
-                        <div class="day-title col">
-                            <span class="date">27.</span>
-                            <span class="weekday">Friday</span>
-                        </div>
+                    <div class="days day-titles row">
                     </div>
                 </div>
                 <div class="row">
                     <div class="hours">
                         <div class="hour-grid"></div>
                     </div>
-                    <div class="days row">
-                        <div class="day col">
-                            <div class="day-hour-grid"></div>
-                            <div class="day-event-grid"></div>
-                        </div>
-                        <div class="day col">
-                            <div class="day-hour-grid"></div>
-                            <div class="day-event-grid"></div>
-                        </div>
-                        <div class="day col">
-                            <div class="day-hour-grid"></div>
-                            <div class="day-event-grid"></div>
-                        </div>
-                        <div class="day col">
-                            <div class="day-hour-grid"></div>
-                            <div class="day-event-grid"></div>
-                        </div>
-                        <div class="day col">
-                            <div class="day-hour-grid"></div>
-                            <div class="day-event-grid"></div>
-                        </div>
+                    <div class="days day-grids row">
                     </div>
                 </div>
             </div>
@@ -506,6 +478,7 @@
                     {
                         start: "08:00",
                         end: "11:15",
+                        date: "23102023",
                         name: "Web Anwendungen 2",
                         shortName: "WebAnw2",
                         teacher: "Eppler",
@@ -514,6 +487,7 @@
                     {
                         start: "15:45",
                         end: "17:15",
+                        date: "23102023",
                         name: "Ereignisdiskrete Systeme",
                         shortName: "ErDiSys",
                         teacher: "Knoblauch",
@@ -522,12 +496,145 @@
                     {
                         start: "14:00",
                         end: "15:30",
+                        date: "24102023",
                         name: "Praktikum Web Anwendungen 2",
                         shortName: "Pr_WebAnw2",
                         teacher: "Nemirovski",
                         room: "201-116"
                     },
+                    {
+                        start: "14:00",
+                        end: "15:30",
+                        date: "24102023",
+                        name: "Praktikum Web Anwendungen 2",
+                        shortName: "Pr_WebAnw2",
+                        teacher: "Kuti",
+                        room: "201-116"
+                    },
+                    {
+                        start: "15:45",
+                        end: "17:15",
+                        date: "24102023",
+                        name: "Signale und Systeme 2",
+                        shortName: "SigSys2",
+                        teacher: "Knoblauch",
+                        room: "210-003"
+                    },
+                    {
+                        start: "09:45",
+                        end: "11:15",
+                        date: "25102023",
+                        name: "Software Engineering",
+                        shortName: "SoftEng",
+                        teacher: "Nemirovski",
+                        room: "201-018"
+                    },
+                    {
+                        start: "11:30",
+                        end: "13:00",
+                        date: "25102023",
+                        name: "Bildverarbeitung",
+                        shortName: "Bildver",
+                        teacher: "Knoblauch",
+                        room: "210-010"
+                    },
+                    {
+                        start: "14:00",
+                        end: "15:30",
+                        date: "25102023",
+                        name: "Praktikum Betriebssicherheit",
+                        shortName: "Pr_BetSich",
+                        teacher: "Rembold",
+                        room: "210-002"
+                    },
+                    {
+                        start: "09:45",
+                        end: "11:15",
+                        date: "26102023",
+                        name: "Betriebssicherheit",
+                        shortName: "BetSich",
+                        teacher: "Rembold",
+                        room: "205-135"
+                    },
+                    {
+                        start: "11:30",
+                        end: "13:00",
+                        date: "26102023",
+                        name: "Numerik",
+                        shortName: "Numerik",
+                        teacher: "Knoblauch",
+                        room: "210-002"
+                    },
+                    {
+                        start: "14:00",
+                        end: "15:30",
+                        date: "26102023",
+                        name: "Praktikum Ereignisdiskrete Systeme",
+                        shortName: "Pr_ErDiSys",
+                        teacher: "Rembold",
+                        room: "210-002"
+                    },
+                    {
+                        start: "08:00",
+                        end: "09:30",
+                        date: "27102023",
+                        name: "Praktikum Bildverarbeitung",
+                        shortName: "Pr_Bildver",
+                        teacher: "Rembold",
+                        room: "210-102"
+                    },
+                    {
+                        start: "14:00",
+                        end: "15:30",
+                        date: "27102023",
+                        name: "Projektmanagement",
+                        shortName: "ProjMan",
+                        teacher: "Rembold",
+                        room: "201-007"
+                    },
                 ];
+
+                function formatDate(date) {
+                    const day = String(date.getDate()).padStart(2, '0');
+                    const month = String(date.getMonth() + 1).padStart(2, '0');
+                    const year = date.getFullYear();
+
+                    return `${day}${month}${year}`;
+                }
+
+                function getWeekDates() {
+                    const today = new Date();
+                    const dayOfWeek = today.getDay(); // 0 (Sunday) to 6 (Saturday)
+
+                    // Calculate the difference between today and Monday
+                    const diff = today.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1);
+                    const monday = new Date(today.setDate(diff));
+
+                    // Generate dates for the rest of the week
+                    const dates = [];
+                    for (let i = 0; i < 6; i++) {
+                        const date = new Date(monday);
+                        date.setDate(monday.getDate() + i);
+                        dates.push(date);
+                    }
+
+                    return dates;
+                }
+
+                const dayTitleTemplate = document.querySelector("#template-day-title");
+                const dayGridTemplate = document.querySelector("#template-day-grid");
+                const weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                getWeekDates().forEach(date => {
+                    const dayTitleNode = dayTitleTemplate.content.firstElementChild.cloneNode(true);
+                    document.querySelector(".day-titles").appendChild(dayTitleNode);
+
+                    dayTitleNode.querySelector(".date").innerText = date.getDate() + ".";
+                    dayTitleNode.querySelector(".weekday").innerText = date.toLocaleString("en-US", { weekday: "long" });
+
+                    const dayGridNode = dayGridTemplate.content.firstElementChild.cloneNode(true);
+                    document.querySelector(".day-grids").appendChild(dayGridNode);
+                    dayGridNode.querySelector(".day-event-grid").id = "date-" + formatDate(date);
+                });
 
                 document.querySelectorAll(".hour-grid, .day-hour-grid, .day").forEach(hourGrid => {
                     hourGrid.style.setProperty('--start-hour', startHour);
@@ -580,19 +687,16 @@
                 });
 
                 const eventItemTemplate = document.querySelector('#template-event-item');
-                document.querySelectorAll(".day-event-grid").forEach(day => {
-                    events.forEach((event) => {
-                        const eventNode = eventItemTemplate.content.firstElementChild.cloneNode(true);
-                        day.appendChild(eventNode);
+                events.forEach(event => {
+                    const eventNode = eventItemTemplate.content.firstElementChild.cloneNode(true);
+                    document.querySelector("#date-" + event.date).appendChild(eventNode);
 
-                        eventNode.querySelector('.subject').innerText = event.shortName;
-                        eventNode.querySelector('.teacher').innerText = event.teacher;
-                        eventNode.querySelector('.room').innerText = event.room;
-                        eventNode.style.setProperty('--start', convertTimeToDecimal(event.start));
-                        eventNode.style.setProperty('--end', convertTimeToDecimal(event.end));
-                    });
+                    eventNode.querySelector('.subject').innerText = event.shortName;
+                    eventNode.querySelector('.teacher').innerText = event.teacher;
+                    eventNode.querySelector('.room').innerText = event.room;
+                    eventNode.style.setProperty('--start', convertTimeToDecimal(event.start));
+                    eventNode.style.setProperty('--end', convertTimeToDecimal(event.end));
                 });
-                
             });
         </script>
     </body>
