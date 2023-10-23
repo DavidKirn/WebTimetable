@@ -112,7 +112,7 @@
                 grid-row-start: calc(
                     (var(--start) - var(--start-hour))
                     * var(--resolution)
-                    + 1
+                    + 2
                 );
                 grid-row-end: calc(
                     (var(--end) - var(--start-hour))
@@ -120,15 +120,42 @@
                     + 1
                 );
 
-                padding: calc(6 / 8 * 16px);
+                padding: .2rem;
 
-                background: var(--tc-default);
+                background: var(--tc-lesson-bg);
                 cursor: pointer;
+
+                display: grid;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
             }
 
-            .event-grid-item > .label {
-                font-weight: 500;
+            .lesson-info-block {
+                display: grid;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                height: max-content;
+                color: #f1f1f1;
             }
+
+            .lesson-info-block > .lesson {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .lesson-info-block > .subject {
+                font-size: medium;
+                background-color: var(--tc-lesson-subject-bg);
+            }
+
+            .lesson-info-block > .teacher,
+            .lesson-info-block > .room {
+                font-size: small;
+            }
+
 
             .day-event-grid {
                 display: grid;
@@ -136,7 +163,7 @@
                 column-gap: .2rem;
                 grid-template-rows: repeat(var(--rows), 1fr);
 
-                margin: 0 .15rem 0 .15rem;
+                margin: 0 1px 0 1px;
             }
 
             .day > * {
@@ -164,6 +191,9 @@
             .day-title > .weekday {
                 font-size: small;
                 color: var(--bs-secondary-color);
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
 
             .month-title {
@@ -172,6 +202,24 @@
                 padding-left: 0;
                 padding-right: 0;
                 color: var(--tc-default-text-color);
+            }
+
+            @media only screen and (max-width: 991px) {
+                .hours {
+                    width: 10%;
+                }
+
+                .month-title {
+                    width: 10%;
+                }
+
+                .days {
+                    width: 90%;
+                }
+
+                .lesson-info-block > .subject {
+                    font-size: small;
+                }
             }
         </style>
     </head>
@@ -248,13 +296,15 @@
         </template>
         <template id="template-event-item">
             <div class="event-grid-item rounded">
-                <span class="time start-time"></span>
-                <p class="label"></p>
-                <span class="time end-time"></span>
+                <div class="lesson-info-block">
+                    <span class="lesson subject px-2 rounded-pill"></span>
+                    <span class="lesson teacher"></span>
+                    <span class="lesson room"></span>
+                </div>
             </div>
         </template>
 
-        <div class="container py-2">
+        <div class="container-md py-2">
             <div class="timetable bg-content border-content rounded">
                 <div class="row d-flex align-items-center text-center">
                     <div class="month-title">
@@ -455,18 +505,27 @@
                 const events = [
                     {
                         start: "08:00",
-                        end: "9:30",
-                        title: 'Focus Time'
+                        end: "11:15",
+                        name: "Web Anwendungen 2",
+                        shortName: "WebAnw2",
+                        teacher: "Eppler",
+                        room: "201-006"
                     },
                     {
-                        start: "11:30",
-                        end: "13:00",
-                        title: '1:1 with Tamika'
+                        start: "15:45",
+                        end: "17:15",
+                        name: "Ereignisdiskrete Systeme",
+                        shortName: "ErDiSys",
+                        teacher: "Knoblauch",
+                        room: "210-002"
                     },
                     {
                         start: "14:00",
-                        end: "17:15",
-                        title: 'Technical Weekly'
+                        end: "15:30",
+                        name: "Praktikum Web Anwendungen 2",
+                        shortName: "Pr_WebAnw2",
+                        teacher: "Nemirovski",
+                        room: "201-116"
                     },
                 ];
 
@@ -526,7 +585,9 @@
                         const eventNode = eventItemTemplate.content.firstElementChild.cloneNode(true);
                         day.appendChild(eventNode);
 
-                        eventNode.querySelector('.label').innerText = event.title;
+                        eventNode.querySelector('.subject').innerText = event.shortName;
+                        eventNode.querySelector('.teacher').innerText = event.teacher;
+                        eventNode.querySelector('.room').innerText = event.room;
                         eventNode.style.setProperty('--start', convertTimeToDecimal(event.start));
                         eventNode.style.setProperty('--end', convertTimeToDecimal(event.end));
                     });

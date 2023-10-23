@@ -16,6 +16,8 @@
     --tc-dropdown-hover-bg: var(--tc-default-subtle-bg);
     --tc-dropdown-active-bg: var(--tc-default);
     --tc-timetable-border-color: #4d4d4d;
+    --tc-lesson-bg: #13795b;
+    --tc-lesson-subject-bg: #0d503c;
 }
 
 [data-bs-theme="light"] {
@@ -36,6 +38,8 @@
     --tc-dropdown-hover-bg: var(--tc-default-subtle-bg);
     --tc-dropdown-active-bg: var(--tc-default);
     --tc-timetable-border-color: #afafaf;
+    --tc-lesson-bg: #13795b;
+    --tc-lesson-subject-bg: #0d503c;
 }
 
 html {
