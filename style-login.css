@@ -174,7 +174,18 @@ body {
 
 .bg-content {
     background-color: var(--tc-content-bg);
+}
+
+[data-bs-theme="dark"] .border-content {
+    border: none;
+}
+
+[data-bs-theme="light"] .border-content {
     border: 1px solid var(--tc-content-border-color);
+}
+
+[data-bs-theme="light"] .navbar {
+    border-bottom: 1px solid var(--tc-content-border-color);
 }
 
 .dropdown-item {
