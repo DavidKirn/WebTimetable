@@ -10,207 +10,56 @@
         <link rel="stylesheet" href="./style-login.css">
 
         <style>
-            * {
-                padding: 0;
-                margin: 0;
-                box-sizing: border-box;
+            .timetable > .row {
+                margin-left: 0;
+                margin-right: 0;
             }
 
-            :root {
-                --bg-root: rgb(66, 68, 87);
-
-                --bg-primary-rgb: 32, 33, 42;
-                --bg-primary: rgb(var(--bg-primary-rgb));
-                --bg-secondary: rgb(80, 82, 88);
-                --bg-tertiary: rgb(40, 41, 50);
-
-                --hi-success: rgb(17, 201, 0);
-                --hi-warning: rgb(255, 147, 5);
-                --hi-danger: rgb(255, 0, 126);
-                --hi-primary: rgb(138, 149, 255);
-                --hi-secondary: rgb(90, 104, 242);
-                --bg-hi: radial-gradient(
-                    74% 185% at -3% 0%,
-                    var(--hi-secondary) 0%,
-                    var(--hi-primary) 100%
-                );
-
-                --fg-primary: rgb(233, 233, 233);
-                --fg-secondary: rgba(131, 133, 137);
-
-                --fw-sm: 500;
-                --fw-base: 700;
-
-                --sp-base: 16px;
-                --sp-sm-1: calc(7 / 8 * var(--sp-base));
-                --sp-sm-2: calc(6 / 8 * var(--sp-base));
-                --sp-sm-3: calc(5 / 8 * var(--sp-base));
-                --sp-sm-4: calc(4 / 8 * var(--sp-base));
-                --sp-sm-5: calc(3 / 8 * var(--sp-base));
-                --sp-sm-6: calc(2 / 8 * var(--sp-base));
-                --sp-sm-7: calc(1 / 8 * var(--sp-base));
-                --sp-lg-7: calc((1 + 7 / 8) * var(--sp-base));
-                --sp-lg-6: calc((1 + 6 / 8) * var(--sp-base));
-                --sp-lg-5: calc((1 + 5 / 8) * var(--sp-base));
-                --sp-lg-4: calc((1 + 4 / 8) * var(--sp-base));
-                --sp-lg-3: calc((1 + 3 / 8) * var(--sp-base));
-                --sp-lg-2: calc((1 + 2 / 8) * var(--sp-base));
-                --sp-lg-1: calc((1 + 1 / 8) * var(--sp-base));
-
-                /* major third scale
-                    factor: 1.250 */
-                --fs-sm-1: 0.8rem;
-                --fs-base: 1rem;
-                --fs-lg-1: 1.25rem;
-                --fs-lg-2: 1.563rem;
-                --fs-lg-3: 1.953rem;
-                --fs-lg-4: 2.441rem;  
-
-                --bd-radius: 24px;
-                --bd: 1px solid var(--bg-secondary);
-
-                --transition: 300ms ease-in-out;
-                --transition-slow: 500ms ease-in-out;
+            .hours {
+                width: 5%;
+                height: max-content;
+                padding-left: 0;
+                padding-right: 0;
+                border-left: 1px solid var(--tc-timetable-border-color);
             }
 
-            .calendar {
-                --left-margin: var(--sp-base);
+            .days {
+                width: 95%;
+                padding-left: 0;
+                padding-right: 0;
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            .day {
+                padding-left: 0;
+                padding-right: 0;
+                border-left: 1px solid var(--tc-timetable-border-color);
+                --hours: calc(var(--end-hour) - var(--start-hour));
+                --rows: calc(var(--resolution) * var(--hours));
+                position: relative;
+            }
+
+            .day:last-child {
+                border-right: 1px solid var(--tc-timetable-border-color);
+            }
+
+            .hour-grid,
+            .day-hour-grid {
                 --hours: calc(var(--end-hour) - var(--start-hour));
                 --rows: calc(var(--resolution) * var(--hours));
 
                 position: relative;
-                /* border-right: 1px dashed var(--bg-secondary); */
-            }
 
-            main {
-                background: var(--bg-root);
-
-                display: grid;
-                place-content: center;
-
-                padding: var(--sp-base);
-
-                color: var(--fg-primary);
-            }
-
-            section {
-                --icon-size: 58px;
-                --padding: var(--sp-lg-1);
-
-                background: var(--tc-content-bg);
-                border: 1px solid var(--tc-content-border-color);
-
-                display: grid;
-                grid-template-rows: max-content 1fr;
-            }
-
-            section > header {
-                /* display: grid;
-                grid-template-columns: max-content 1fr;
-                grid-template-rows: repeat(2, 1fr);
-                gap: var(--sp-sm-1);
-                grid-template-areas:
-                    "icon header"
-                    "icon sub-header";
-
-                padding: var(--padding); */
-            }
-
-            section > header > .icon {
-                grid-area: icon;
-
-                display: grid;
-                place-content: center;
-                border-radius: calc(2 / 3 * var(--bd-radius));
-
-                width: var(--icon-size);
-                height: var(--icon-size);
-
-                background: var(--bg-primary);
-                color: var(--hi-primary);
-            }
-
-            section > header > h2 {
-                grid-area: header;
-
-                font-size: var(--fs-lg-1);
-                align-self: end;
-            }
-
-            section > header > p {
-                grid-area: sub-header;
-
-                font-weight: var(--fw-sm);
-            }
-
-            section > *:nth-child(2) {
-                margin: 0 var(--padding) var(--padding);
-                place-self: stretch;
-            }
-
-            section {
-                /* width: 80rem; */
-                height: 50rem;
-            }
-
-            .calendar > * {
-                position: absolute;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                top: 0;
-            }
-
-            .calendar__hour-grid {
-                display: grid;
-                grid-auto-flow: row;
-                grid-auto-rows: 1fr;
-            }
-
-            .calendar__hour {
-                border-top: 1px dashed var(--bg-secondary);
-            }
-
-            .calendar__hour:last-child {
-                border-bottom: 1px dashed var(--bg-secondary);
-            }
-
-            .calendar__hour > .label {
-                font-size: var(--fs-sm-1);
-                line-height: 2.5;
-            }
-
-            .calendar__hour.active {
-                position: relative;
-
-                color: var(--tc-default);
-                font-weight: bold;
-            }
-
-            .calendar_day__hour.active::before {
-                content: "";
-
-                position: absolute;
-
-                left: 0; /* calc(1.5 * var(--left-margin)) */
-                right: 0;
-                height: 1px;
-                top: calc(100% * var(--current-minute) / 60);
-                z-index: 2;
-
-                border-bottom: 2px dashed var(--tc-default);
-            }
-
-            .calendar__events {
                 display: grid;
                 grid-template-columns: 1fr;
                 grid-template-rows: repeat(var(--rows), 1fr);
-
-                /* left: calc(2 * var(--left-margin)); */
-                margin: 0 .25rem 0 .25rem;
+                border-top: 1px solid var(--tc-timetable-border-color);
+                border-bottom: 1px solid var(--tc-timetable-border-color);
             }
 
-            .calendar__event {
+            .hour-grid-item {
+                border-top: 1px dashed var(--tc-timetable-border-color);
                 --start: 0;
                 --end: 0;
                 --start-row: ;
@@ -223,41 +72,113 @@
                 grid-row-end: calc(
                     (var(--end) - var(--start-hour))
                     * var(--resolution)
-                    
+                    + 1
                 );
 
-                padding: var(--sp-sm-2);
-                border-radius: calc(2 / 3 * var(--bd-radius));
+                display: grid;
+                justify-content: center;
+                text-align: center;
+            }
+
+            .hour-grid-item:first-child {
+                border-top: none;
+            }
+
+            .hour-grid-item > .label {
+                font-weight: bold;
+                font-size: 1rem;
+                margin-top: .5rem;
+                margin-bottom: .5rem;
+                align-self: center;
+            }
+
+            .hour-grid-item > .time {
+                font-weight: 500;
+                font-size: .8rem;
+            }
+
+            .hour-grid-item > .start-time {
+                align-self: self-start;
+            }
+
+            .hour-grid-item > .end-time {
+                align-self: self-end;
+            }
+
+            .break {
+                background-color: var(--tc-input-bg);
+            }
+
+            .event-grid-item {
+                --start: 0;
+                --end: 0;
+                --start-row: ;
+
+                grid-row-start: calc(
+                    (var(--start) - var(--start-hour))
+                    * var(--resolution)
+                    + 1
+                );
+                grid-row-end: calc(
+                    (var(--end) - var(--start-hour))
+                    * var(--resolution)
+                    + 1
+                );
+
+                padding: calc(6 / 8 * 16px);
+                /* border-radius: calc(2 / 3 * 24px); */
 
                 background: var(--tc-default);
+                border: 1px solid var(--tc-content-border-color);
                 cursor: pointer;
             }
 
-            .calendar__event > .label {
-                font-weight: var(--fw-sm);
+            .event-grid-item > .label {
+                font-weight: 500;
             }
 
-            .calendar__event.past {
-                background: var(--tc-input-bg);
+            .day-event-grid {
+                display: grid;
+                grid-auto-columns: 1fr;
+                column-gap: .2rem;
+                /* grid-template-columns: repeat(3, minmax(0, 1fr)); */
+                grid-template-rows: repeat(var(--rows), 1fr);
+
+                /* left: calc(2 * var(--left-margin)); */
+                margin: 0 .2rem 0 .2rem;
             }
 
-            /* .hours {
-                width: 5%;
-                height: max-content;
-                padding-right: 0;
+            .day > * {
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                top: 0;
             }
 
-            .days {
-                width: 95%;
+            .day-title {
+                display: grid;
+                text-align: center;
+                padding-bottom: .25rem;
                 padding-left: 0;
                 padding-right: 0;
-            } */
+                border-top: 1px solid var(--tc-timetable-border-color);
+                border-left: 1px solid var(--tc-timetable-border-color);
+            }
 
-            /* .calendar__hour {
-                height: 8rem;
-            } */
+            .day-title:last-child {
+                border-right: 1px solid var(--tc-timetable-border-color);
+            }
 
-            
+            .day-title > .date {
+                font-size: larger;
+                color: var(--tc-default-text-color);
+            }
+
+            .day-title > .weekday {
+                font-size: small;
+                color: var(--bs-secondary-color);
+            }
         </style>
     </head>
     <body>
@@ -324,159 +245,79 @@
             </nav>
         </header>
 
-        <template id="template-hour">
-            <div class="calendar__hour">
+        <template id="template-hour-item">
+            <div class="hour-grid-item">
+                <span class="time start-time"></span>
                 <p class="label"></p>
+                <span class="time end-time"></span>
             </div>
         </template>
-        <template id="template-day-hour">
-            <div class="calendar__hour calendar_day__hour">
+        <template id="template-event-item">
+            <div class="event-grid-item rounded">
+                <span class="time start-time"></span>
                 <p class="label"></p>
-            </div>
-        </template>
-        <template id="template-event">
-            <div class="calendar__event">
-                <p class="label"></p>
+                <span class="time end-time"></span>
             </div>
         </template>
 
-        <div class="container pt-2">
-            <!-- <div class="timetable">
+        <div class="container py-2">
+            <div class="timetable bg-content p-2 rounded">
                 <div class="row">
-                    <div class="hours bg-content">
+                    <div class="hours">
                         
                     </div>
-                    <div class="days row bg-success">
-                        <div class="day col bg-light">
-                            
+                    <div class="days row">
+                        <div class="day-title col">
+                            <span class="date">23</span>
+                            <span class="weekday">Monday</span>
                         </div>
-                        <div class="day col bg-secondary">
-                            
+                        <div class="day-title col">
+                            <span class="date">24</span>
+                            <span class="weekday">Tuesday</span>
                         </div>
-                        <div class="day col bg-light">
-                            
+                        <div class="day-title col">
+                            <span class="date">25</span>
+                            <span class="weekday">Wednesday</span>
                         </div>
-                        <div class="day col bg-secondary">
-                            
+                        <div class="day-title col">
+                            <span class="date">26</span>
+                            <span class="weekday">Thursday</span>
                         </div>
-                        <div class="day col bg-light">
-                            
+                        <div class="day-title col">
+                            <span class="date">27</span>
+                            <span class="weekday">Friday</span>
                         </div>
                     </div>
                 </div>
-            </div> -->
-
-            <section class="my-day rounded">
-                <header class="pb-4">
-                    <!-- <div class="icon">
-                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M4.12352 12.5391H27.8888" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M21.9228 17.7464H21.9351" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M16.0062 17.7464H16.0185" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M10.0772 17.7464H10.0895" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M21.9228 22.9283H21.9351" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M16.0062 22.9283H16.0185" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M10.0772 22.9283H10.0895" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M21.3916 2.66675V7.05445" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M10.6207 2.66675V7.05445" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M21.651 4.77246H10.3613C6.4457 4.77246 4 6.95371 4 10.9632V23.0294C4 27.1019 6.4457 29.3335 10.3613 29.3335H21.6387C25.5666 29.3335 28 27.1397 28 23.1302V10.9632C28.0123 6.95371 25.579 4.77246 21.651 4.77246Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                    <h2>My Day</h2> -->
-                    <!-- <p>3 Events</p> -->
-                </header>
                 <div class="row">
-                    <div class="calendar col-auto">
-                        <div class="calendar__hour-grid">
-                            <template id="template-hour">
-                                <div class="calendar__hour">
-                                    <p class="label"></p>
-                                </div>
-                            </template>
-                        </div>
+                    <div class="hours">
+                        <div class="hour-grid"></div>
                     </div>
-                    <div class="calendar col w-20">
-                        <div class="calendar__hour-grid">
-                            <template id="template-hour">
-                                <div class="calendar__hour">
-                                    <p class="label"></p>
-                                </div>
-                            </template>
+                    <div class="days row">
+                        <div class="day col">
+                            <div class="day-hour-grid"></div>
+                            <div class="day-event-grid"></div>
                         </div>
-                        <div class="calendar__events">
-                            <template id="template-event">
-                                <div class="calendar__event">
-                                    <p class="label"></p>
-                                </div>
-                            </template>
+                        <div class="day col">
+                            <div class="day-hour-grid"></div>
+                            <div class="day-event-grid"></div>
                         </div>
-                    </div>
-                    <div class="calendar col w-20">
-                        <div class="calendar__hour-grid">
-                            <template id="template-hour">
-                                <div class="calendar__hour">
-                                    <p class="label"></p>
-                                </div>
-                            </template>
+                        <div class="day col">
+                            <div class="day-hour-grid"></div>
+                            <div class="day-event-grid"></div>
                         </div>
-                        <div class="calendar__events">
-                            <template id="template-event">
-                                <div class="calendar__event">
-                                    <p class="label"></p>
-                                </div>
-                            </template>
+                        <div class="day col">
+                            <div class="day-hour-grid"></div>
+                            <div class="day-event-grid"></div>
                         </div>
-                    </div>
-                    <div class="calendar col w-20">
-                        <div class="calendar__hour-grid">
-                            <template id="template-hour">
-                                <div class="calendar__hour">
-                                    <p class="label"></p>
-                                </div>
-                            </template>
-                        </div>
-                        <div class="calendar__events">
-                            <template id="template-event">
-                                <div class="calendar__event">
-                                    <p class="label"></p>
-                                </div>
-                            </template>
-                        </div>
-                    </div>
-                    <div class="calendar col w-20">
-                        <div class="calendar__hour-grid">
-                            <template id="template-hour">
-                                <div class="calendar__hour">
-                                    <p class="label"></p>
-                                </div>
-                            </template>
-                        </div>
-                        <div class="calendar__events">
-                            <template id="template-event">
-                                <div class="calendar__event">
-                                    <p class="label"></p>
-                                </div>
-                            </template>
-                        </div>
-                    </div>
-                    <div class="calendar col w-20">
-                        <div class="calendar__hour-grid">
-                            <template id="template-hour">
-                                <div class="calendar__hour">
-                                    <p class="label"></p>
-                                </div>
-                            </template>
-                        </div>
-                        <div class="calendar__events">
-                            <template id="template-event">
-                                <div class="calendar__event">
-                                    <p class="label"></p>
-                                </div>
-                            </template>
+                        <div class="day col">
+                            <div class="day-hour-grid"></div>
+                            <div class="day-event-grid"></div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
@@ -554,122 +395,148 @@
                 });
 
                 const startHour = 8;
-                const endHour = 18;
-                const resolution = 60;
+                const endHour = 19;
+                const resolution = 100;
                 const currentHour = 12;
                 const currentMinute = 15;
 
-                const hourTemplate = document.querySelector('#template-hour');
-                const hourGrids = document.querySelectorAll('.calendar__hour-grid');
-                hourGrids.forEach((hourGrid, index) => {
-                    for (let i = startHour; i < endHour; i++) {
-                        const hourNode = hourTemplate.content.firstElementChild.cloneNode(true);
-                        hourGrid.appendChild(hourNode);
-
-                        if (index == 0) {
-                            hourNode.querySelector('.label').innerText = `${i}`.padStart(2, '0');
-                        } else {
-                            hourNode.classList.add("calendar_day__hour");
-                        }
-
-                        if (currentHour === i) {
-                            hourNode.classList.add('active');
-                            hourNode.style.setProperty('--current-minute', currentMinute);
-                        }
-                    }
-                });
-
-                // for (let i = startHour; i < endHour; i++) {
-                //     const hourNode = hourTemplate.content.firstElementChild.cloneNode(true);
-                //     document.querySelector(".hours").appendChild(hourNode);
-
-                //     hourNode.querySelector('.label').innerText = `${i}`.padStart(2, '0');
-
-                //     if (currentHour === i) {
-                //         hourNode.classList.add('active');
-                //         hourNode.style.setProperty('--current-minute', currentMinute);
-                //     }
-                // }
-
-                // document.querySelectorAll(".day").forEach(day => {
-                //     for (let i = startHour; i < endHour; i++) {
-                //     const hourNode = hourTemplate.content.firstElementChild.cloneNode(true);
-                //     day.appendChild(hourNode);
-
-                //     hourNode.querySelector('.label').remove();
-
-                //     if (currentHour === i) {
-                //         hourNode.classList.add('active');
-                //         hourNode.style.setProperty('--current-minute', currentMinute);
-                //     }
-                // }
-                // });
-
-                const events = [
+                const hours = [
                     {
-                        start: 8,
-                        end: 10,
-                        title: 'Focus Time',
-                        past: true,
+                        start: "08:00",
+                        end: "09:30",
+                        title: "1"
                     },
                     {
-                        start: 10.5,
-                        end: 11.5,
-                        title: '1:1 with Tamika',
-                        past: true,
+                        start: "09:30",
+                        end: "09:45",
+                        title: ""
                     },
                     {
-                        start: 14,
-                        end: 15,
-                        title: 'Technical Weekly',
+                        start: "09:45",
+                        end: "11:15",
+                        title: "2"
+                    },
+                    {
+                        start: "11:15",
+                        end: "11:30",
+                        title: ""
+                    },
+                    {
+                        start: "11:30",
+                        end: "13:00",
+                        title: "3"
+                    },
+                    {
+                        start: "13:00",
+                        end: "14:00",
+                        title: ""
+                    },
+                    {
+                        start: "14:00",
+                        end: "15:30",
+                        title: "4"
+                    },
+                    {
+                        start: "15:30",
+                        end: "15:45",
+                        title: ""
+                    },
+                    {
+                        start: "15:45",
+                        end: "17:15",
+                        title: "5"
+                    },
+                    {
+                        start: "17:15",
+                        end: "17:30",
+                        title: ""
+                    },
+                    {
+                        start: "17:30",
+                        end: "19:00",
+                        title: "6"
                     },
                 ];
 
-                const eventTemplate = document.querySelector('#template-event');
-                const calendarEventsElements = document.querySelectorAll('.calendar__events');
-                const calendarElements = document.querySelectorAll('.calendar');
+                const events = [
+                    {
+                        start: "08:00",
+                        end: "9:30",
+                        title: 'Focus Time'
+                    },
+                    {
+                        start: "11:30",
+                        end: "13:00",
+                        title: '1:1 with Tamika'
+                    },
+                    {
+                        start: "14:00",
+                        end: "17:15",
+                        title: 'Technical Weekly'
+                    },
+                ];
 
-                calendarElements.forEach(calendar => {
-                    calendar.style.setProperty('--start-hour', startHour);
-                    calendar.style.setProperty('--end-hour', endHour);
-                    calendar.style.setProperty('--resolution', resolution);
+                document.querySelectorAll(".hour-grid, .day-hour-grid, .day").forEach(hourGrid => {
+                    hourGrid.style.setProperty('--start-hour', startHour);
+                    hourGrid.style.setProperty('--end-hour', endHour);
+                    hourGrid.style.setProperty('--resolution', resolution);
                 });
 
-                calendarEventsElements.forEach(calendarEvents => {
-                    events.forEach((event) => {
-                        const eventNode = eventTemplate.content.firstElementChild.cloneNode(true);
-                        calendarEvents.appendChild(eventNode);
+                function convertTimeToDecimal(timeString) {
+                    const [hours, minutes] = timeString.split(':').map(Number);
+                    return hours + (minutes / 60);
+                }
 
-                        eventNode.querySelector('.label').innerText = event.title;
-                        eventNode.style.setProperty('--start', event.start);
-                        eventNode.style.setProperty('--end', event.end);
+                function convertDecimalToTime(decimalTime) {
+                    const hours = Math.floor(decimalTime);
+                    const minutes = (decimalTime - hours) * 60;
+                    const paddedMinutes = String(minutes).padStart(2, '0');
+                    return `${String(hours).padStart(2, '0')}:${paddedMinutes}`;
+                }
 
-                        if (event.past) {
-                            eventNode.classList.add('past');
+                const hourItemTemplate = document.querySelector("#template-hour-item");
+                hours.forEach(hourItem => {
+                    const hourNode = hourItemTemplate.content.firstElementChild.cloneNode(true);
+                    document.querySelector(".hour-grid").appendChild(hourNode);
+
+                    hourNode.querySelector('.label').innerText = hourItem.title;
+                    
+                    if (hourItem.title !== "") {
+                        hourNode.querySelector(".start-time").innerText = hourItem.start;
+                        hourNode.querySelector(".end-time").innerText = hourItem.end;
+                    } else {
+                        hourNode.classList.add("break");
+                    }
+
+                    hourNode.style.setProperty('--start', convertTimeToDecimal(hourItem.start));
+                    hourNode.style.setProperty('--end', convertTimeToDecimal(hourItem.end));
+                });
+
+                document.querySelectorAll(".day-hour-grid").forEach(hourGrid => {
+                    hours.forEach(hourItem => {
+                        const hourNode = hourItemTemplate.content.firstElementChild.cloneNode(true);
+                        hourGrid.appendChild(hourNode);
+                        
+                        if (hourItem.title === "") {
+                            hourNode.classList.add("break");
                         }
+
+                        hourNode.style.setProperty('--start', convertTimeToDecimal(hourItem.start));
+                        hourNode.style.setProperty('--end', convertTimeToDecimal(hourItem.end));
                     });
                 });
 
-                // document.querySelectorAll(".day").forEach(day => {
-                //     day.style.setProperty('--start-hour', startHour);
-                //     day.style.setProperty('--end-hour', endHour);
-                //     day.style.setProperty('--resolution', resolution);
-                // });
+                const eventItemTemplate = document.querySelector('#template-event-item');
+                document.querySelectorAll(".day-event-grid").forEach(day => {
+                    events.forEach((event) => {
+                        const eventNode = eventItemTemplate.content.firstElementChild.cloneNode(true);
+                        day.appendChild(eventNode);
 
-                // document.querySelectorAll(".day").forEach(day => {
-                //     events.forEach((event) => {
-                //         const eventNode = eventTemplate.content.firstElementChild.cloneNode(true);
-                //         day.appendChild(eventNode);
-
-                //         eventNode.querySelector('.label').innerText = event.title;
-                //         eventNode.style.setProperty('--start', event.start);
-                //         eventNode.style.setProperty('--end', event.end);
-
-                //         if (event.past) {
-                //             eventNode.classList.add('past');
-                //         }
-                //     });
-                // });
+                        eventNode.querySelector('.label').innerText = event.title;
+                        eventNode.style.setProperty('--start', convertTimeToDecimal(event.start));
+                        eventNode.style.setProperty('--end', convertTimeToDecimal(event.end));
+                    });
+                });
                 
             });
         </script>
