@@ -736,7 +736,54 @@
                     eventNode.querySelector('.room').innerText = event.room;
                     eventNode.style.setProperty('--start', convertTimeToDecimal(event.start));
                     eventNode.style.setProperty('--end', convertTimeToDecimal(event.end));
+
+                    const gridColumnCount = getGridColumnCount(document.querySelector("#date-" + event.date))
+                    if (gridColumnCount > 1) {
+                        const overlap = checkForOverlap(event, events);
+                        if (!overlap) {
+                            eventNode.style.setProperty("grid-column", "auto / span " + gridColumnCount);
+                        }
+                    }
                 });
+
+                function checkForOverlap(eventToCheck, eventsArray) {
+                    const startTimeToCheck = new Date(eventToCheck.date.slice(4, 8), 
+                                                        eventToCheck.date.slice(2, 4) - 1, 
+                                                        eventToCheck.date.slice(0, 2), 
+                                                        eventToCheck.start.slice(0, 2), 
+                                                        eventToCheck.start.slice(3, 5));
+                    const endTimeToCheck = new Date(eventToCheck.date.slice(4, 8), 
+                                                    eventToCheck.date.slice(2, 4) - 1, 
+                                                    eventToCheck.date.slice(0, 2), 
+                                                    eventToCheck.end.slice(0, 2), 
+                                                    eventToCheck.end.slice(3, 5));
+
+                    for (const event of eventsArray) {
+                        if (event !== eventToCheck && event.date === eventToCheck.date) {
+                            const startTime = new Date(event.date.slice(4, 8), 
+                                                        event.date.slice(2, 4) - 1, 
+                                                        event.date.slice(0, 2), 
+                                                        event.start.slice(0, 2), 
+                                                        event.start.slice(3, 5));
+                            const endTime = new Date(event.date.slice(4, 8), 
+                                                    event.date.slice(2, 4) - 1, 
+                                                    event.date.slice(0, 2), 
+                                                    event.end.slice(0, 2), 
+                                                    event.end.slice(3, 5));
+
+                            if (startTimeToCheck < endTime && endTimeToCheck > startTime) {
+                                return true;
+                            }
+                        }
+                    }
+
+                    return false;
+                }
+
+                function getGridColumnCount(grid) {
+                    const gridComputedStyle = window.getComputedStyle(grid);
+                    return gridComputedStyle.getPropertyValue("grid-template-columns").split(" ").length;
+                }
             });
         </script>
     </body>
