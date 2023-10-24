@@ -248,6 +248,10 @@
                 .weekday-short {
                     display: block;
                 }
+
+                .day-title > .date {
+                    font-size: medium;
+                }
             }
 
             @media only screen and (min-width: 992px) {
@@ -358,8 +362,7 @@
         <div class="container-md py-2 timetable-container">
             <div class="timetable bg-content border-content rounded">
                 <div class="row d-flex align-items-center text-center">
-                    <div class="month-title">
-                        <span>Okt.</span>
+                    <div class="hours">
                     </div>
                     <div class="days day-titles row">
                     </div>
@@ -667,7 +670,9 @@
                     const dayTitleNode = dayTitleTemplate.content.firstElementChild.cloneNode(true);
                     document.querySelector(".day-titles").appendChild(dayTitleNode);
 
-                    dayTitleNode.querySelector(".date").innerText = date.getDate() + ".";
+                    const day = String(date.getDate()).padStart(2, '0');
+                    const month = String(date.getMonth() + 1).padStart(2, '0');
+                    dayTitleNode.querySelector(".date").innerText = day + "." + month + ".";
                     dayTitleNode.querySelector(".weekday-long").innerText = date.toLocaleString("en-US", { weekday: "long" });
                     dayTitleNode.querySelector(".weekday-short").innerText = date.toLocaleString("en-US", { weekday: "short" }) + ".";
 
