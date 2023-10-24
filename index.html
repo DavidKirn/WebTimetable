@@ -81,7 +81,7 @@
 
             .hour-grid-item > .label {
                 font-weight: bold;
-                font-size: 1rem;
+                font-size: medium;
                 margin-top: .5rem;
                 margin-bottom: .5rem;
                 align-self: center;
@@ -89,7 +89,7 @@
 
             .hour-grid-item > .time {
                 font-weight: 500;
-                font-size: .8rem;
+                font-size: small;
             }
 
             .hour-grid-item > .start-time {
@@ -120,7 +120,7 @@
                     + 1
                 );
 
-                padding: .2rem;
+                padding: .15rem;
 
                 background: var(--tc-lesson-bg);
                 cursor: pointer;
@@ -149,6 +149,7 @@
             .lesson-info-block > .subject {
                 font-size: medium;
                 background-color: var(--tc-lesson-subject-bg);
+                padding: 0 .3rem 0 .3rem;
             }
 
             .lesson-info-block > .teacher,
@@ -205,6 +206,11 @@
             }
 
             @media only screen and (max-width: 991px) {
+                .timetable-container {
+                    padding-left: 0;
+                    padding-right: 0;
+                }
+
                 .hours {
                     width: 10%;
                 }
@@ -218,7 +224,39 @@
                 }
 
                 .lesson-info-block > .subject {
+                    font-size: x-small;
+                    padding: 0 .1rem 0 .1rem;
+                }
+
+                .lesson-info-block > .teacher,
+                .lesson-info-block > .room {
+                    font-size: x-small;
+                }
+
+                .hour-grid-item > .label {
                     font-size: small;
+                }
+
+                .hour-grid-item > .time {
+                    font-size: x-small;
+                }
+
+                .weekday-long {
+                    display: none;
+                }
+
+                .weekday-short {
+                    display: block;
+                }
+            }
+
+            @media only screen and (min-width: 992px) {
+                .weekday-long {
+                    display: block;
+                }
+
+                .weekday-short {
+                    display: none;
                 }
             }
         </style>
@@ -297,7 +335,7 @@
         <template id="template-event-item">
             <div class="event-grid-item rounded">
                 <div class="lesson-info-block">
-                    <span class="lesson subject px-2 rounded-pill"></span>
+                    <span class="lesson subject rounded"></span>
                     <span class="lesson teacher"></span>
                     <span class="lesson room"></span>
                 </div>
@@ -306,7 +344,8 @@
         <template id="template-day-title">
             <div class="day-title col">
                 <span class="date"></span>
-                <span class="weekday"></span>
+                <span class="weekday weekday-long"></span>
+                <span class="weekday weekday-short"></span>
             </div>
         </template>
         <template id="template-day-grid">
@@ -316,7 +355,7 @@
             </div>
         </template>
 
-        <div class="container-md py-2">
+        <div class="container-md py-2 timetable-container">
             <div class="timetable bg-content border-content rounded">
                 <div class="row d-flex align-items-center text-center">
                     <div class="month-title">
@@ -629,7 +668,8 @@
                     document.querySelector(".day-titles").appendChild(dayTitleNode);
 
                     dayTitleNode.querySelector(".date").innerText = date.getDate() + ".";
-                    dayTitleNode.querySelector(".weekday").innerText = date.toLocaleString("en-US", { weekday: "long" });
+                    dayTitleNode.querySelector(".weekday-long").innerText = date.toLocaleString("en-US", { weekday: "long" });
+                    dayTitleNode.querySelector(".weekday-short").innerText = date.toLocaleString("en-US", { weekday: "short" }) + ".";
 
                     const dayGridNode = dayGridTemplate.content.firstElementChild.cloneNode(true);
                     document.querySelector(".day-grids").appendChild(dayGridNode);
