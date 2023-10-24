@@ -255,11 +255,14 @@
 
                 html {
                     scrollbar-width: none; /* Firefox */
+                }
+
+                body {
                     -ms-overflow-style: none; /* Internet Explorer 10+ */
                 }
 
-                html::-webkit-scrollbar {
-                    width: 0; /* WebKit */
+                body::-webkit-scrollbar {
+                    display: none; /* Chrome, Safari, Opera, and other WebKit-based browsers */
                 }
             }
 
