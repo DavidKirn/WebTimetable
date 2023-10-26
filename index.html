@@ -273,10 +273,10 @@
                         <svg class="brand-icon" width="32" height="32" version="1.1" viewBox="0 0 132.29 132.29" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(1.9008 0 0 1.9008 -28.896 -28.896)"><g transform="translate(0 -952.36)"><path d="m50 972.36c-16.545 0-30 13.455-30 30 0 16.545 13.455 30 30 30s30-13.455 30-30c0-16.545-13.455-30-30-30zm0 4c14.383 0 26 11.617 26 26 0 14.383-11.617 26-26 26s-26-11.617-26-26c0-14.383 11.617-26 26-26zm0 6c-1.1046 0-2 0.8954-2 2v18c0.081 0.7739 0.4001 1.2012 0.875 1.6563l11.031 11.062c0.7811 0.781 2.0312 0.7811 2.8124 0 0.781-0.7811 0.781-2.0315 0-2.8125l-10.719-10.719v-17.187c0-1.1046-0.8954-2-2-2z" color="#000000" overflow="visible" style="text-indent:0;text-transform:none"/></g></g></svg>
                     </div>
                 </a>
-                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fa-solid fa-bars"></i>
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa-solid fa-bars" id="navbarTogglerIcon"></i>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 navbar-links">
                         <li class="nav-item pe-3">
                             <a class="nav-link" aria-current="page" href="#">Home</a>
@@ -445,6 +445,16 @@
                         localStorage.setItem("theme", theme);
                         setTheme(theme);
                     });
+                });
+
+                document.getElementById("navbarNav").addEventListener("show.bs.collapse", function() {
+                    document.getElementById('navbarTogglerIcon').classList.remove("fa", "fa-bars");
+                    document.getElementById('navbarTogglerIcon').classList.add("fa", "fa-bars-staggered");
+                });
+
+                document.getElementById("navbarNav").addEventListener("hide.bs.collapse", function() {
+                    document.getElementById("navbarTogglerIcon").classList.remove("fa", "fa-bars-staggered");
+                    document.getElementById("navbarTogglerIcon").classList.add("fa", "fa-bars");
                 });
 
                 const startHour = 8;
