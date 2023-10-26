@@ -266,68 +266,63 @@
         </style>
     </head>
     <body>
-        <header class="navbar navbar-expand-lg bd-navbar sticky-top bg-content">
-            <nav class="container-xxl bd-gutter flex-wrap flex-lg-nowrap" aria-label="Main navigation">
-                <a class="navbar-brand p-0 me-0 me-lg-2" id="navbar-icon" href="/" aria-label="Bootstrap">
-                    <img src="./timecron-icon.svg" alt="timecron" class="svg-icon" height="32px">
-                </a>
-                <div class="bd-navbar-toggle">
-                    <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#bdSidebar" aria-controls="bdSidebar" aria-label="Toggle docs navigation">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="bi" fill="currentColor" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"></path>
-                        </svg>
-                        <span class="d-none fs-6 pe-1">Browse</span>
-                  </button>
-                </div>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <div class="offcanvas-lg offcanvas-end flex-grow-1" tabindex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel" data-bs-scroll="true">
-                        <div class="offcanvas-header px-4 pb-0">
-                            <h5 class="offcanvas-title text-white" id="bdNavbarOffcanvasLabel">Bootstrap</h5>
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#bdNavbar"></button>
-                        </div>
-                        
-                        <div class="offcanvas-body p-4 pt-0 p-lg-0">
-                            <ul class="navbar-nav flex-row flex-wrap bd-navbar-nav">
-                                <li class="nav-item px-1 active">
-                                    <a class="nav-link px-3" href="">Timetable</a>
-                                </li>
-                                <li class="nav-item px-1">
-                                    <a class="nav-link px-3" href="">Rooms</a>
-                                </li>
-                            </ul>
-                            <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
-                                <li class="nav-item dropdown">
-                                    <button class="btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-display="static">
-                                        Profil
-                                    </button>
-                                  
-                                    <ul class="dropdown-menu dropdown-menu-end">
-                                        <li><button class="dropdown-item d-flex align-items-center"><i class="fa-solid fa-sun fa-fw me-2 opacity-50"></i>Light</button></li>
-                                        <li><button class="dropdown-item d-flex align-items-center active"><i class="fa-solid fa-moon fa-fw me-2 opacity-50"></i>Dark<i class="fa-solid fa-check fa-fw ms-auto"></i></button></li>
-                                        <li><button class="dropdown-item d-flex align-items-center"><i class="fa-solid fa-circle-half-stroke fa-fw me-2 opacity-50"></i>Auto</button></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
-                                    <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div>
-                                    <hr class="d-lg-none my-2 text-white-50">
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <button class="btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle d-flex align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-display="static">
-                                        <i class="fa-solid fa-circle-half-stroke fa-fw my-1" id="nav-icon-active-theme"></i>
-                                    </button>
-                                    
-                                    <ul class="dropdown-menu dropdown-menu-end">
-                                        <li><button class="dropdown-item d-flex align-items-center btn-theme rounded-pill"><i class="fa-solid fa-sun fa-fw me-2 opacity-75"></i>Light</button></li>
-                                        <li><button class="dropdown-item d-flex align-items-center btn-theme rounded-pill"><i class="fa-solid fa-moon fa-fw me-2 opacity-75"></i>Dark</i></button></li>
-                                        <li><button class="dropdown-item d-flex align-items-center btn-theme rounded-pill"><i class="fa-solid fa-circle-half-stroke fa-fw me-2 opacity-75"></i>Auto</button></li>                        
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
+        <nav class="navbar navbar-expand-lg bg-content">
+            <div class="container-xxl">
+                <a class="navbar-brand" href="#">
+                    <div class="bg-brand-icon border-brand-icon rounded p-2">
+                        <svg class="brand-icon" width="32" height="32" version="1.1" viewBox="0 0 132.29 132.29" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(1.9008 0 0 1.9008 -28.896 -28.896)"><g transform="translate(0 -952.36)"><path d="m50 972.36c-16.545 0-30 13.455-30 30 0 16.545 13.455 30 30 30s30-13.455 30-30c0-16.545-13.455-30-30-30zm0 4c14.383 0 26 11.617 26 26 0 14.383-11.617 26-26 26s-26-11.617-26-26c0-14.383 11.617-26 26-26zm0 6c-1.1046 0-2 0.8954-2 2v18c0.081 0.7739 0.4001 1.2012 0.875 1.6563l11.031 11.062c0.7811 0.781 2.0312 0.7811 2.8124 0 0.781-0.7811 0.781-2.0315 0-2.8125l-10.719-10.719v-17.187c0-1.1046-0.8954-2-2-2z" color="#000000" overflow="visible" style="text-indent:0;text-transform:none"/></g></g></svg>
                     </div>
+                </a>
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 navbar-links">
+                        <li class="nav-item pe-3">
+                            <a class="nav-link" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item pe-3">
+                            <a class="nav-link active" href="#">Timetable</a>
+                        </li>
+                        <li class="nav-item pe-3">
+                            <a class="nav-link" href="#">Rooms</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
+                        <li class="nav-item py-lg-1 col-12 col-lg-auto">
+                            <hr class="d-lg-none my-2 text-white-50">
+                        </li>
+                        <li class="nav-item dropdown">
+                            <button class="btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-display="static">
+                                Profile
+                            </button>
+                          
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><button class="dropdown-item d-flex align-items-center rounded-pill"><i class="fa-solid fa-user fa-fw me-2 opacity-75"></i>Your profile</button></li>
+                                <li><button class="dropdown-item d-flex align-items-center rounded-pill"><i class="fa-solid fa-gear fa-fw me-2 opacity-75"></i>Settings</button></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><button class="dropdown-item d-flex align-items-center rounded-pill"><i class="fa-solid fa-arrow-right-from-bracket fa-fw me-2 opacity-75"></i>Sign out</button></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item py-lg-1 col-12 col-lg-auto">
+                            <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div>
+                            <hr class="d-lg-none my-2 text-white-50">
+                        </li>
+                        <li class="nav-item dropdown">
+                            <button class="btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle d-flex align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-display="static">
+                                <i class="fa-solid fa-circle-half-stroke fa-fw my-1" id="nav-icon-active-theme"></i>
+                            </button>
+                            
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><button class="dropdown-item d-flex align-items-center btn-theme rounded-pill"><i class="fa-solid fa-sun fa-fw me-2 opacity-75"></i>Light</button></li>
+                                <li><button class="dropdown-item d-flex align-items-center btn-theme rounded-pill"><i class="fa-solid fa-moon fa-fw me-2 opacity-75"></i>Dark</i></button></li>
+                                <li><button class="dropdown-item d-flex align-items-center btn-theme rounded-pill"><i class="fa-solid fa-circle-half-stroke fa-fw me-2 opacity-75"></i>Auto</button></li>                        
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
-            </nav>
-        </header>
+            </div>
+        </nav>
 
         <template id="template-hour-item">
             <div class="hour-grid-item">
