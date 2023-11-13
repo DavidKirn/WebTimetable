@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Space Grotesk">
         <link rel="stylesheet" href="./css/style-main.css">
-        <link rel="stylesheet" href="./css/login.css">
+        <link rel="stylesheet" href="./css/signup.css">
     </head>
     <body class="d-flex align-items-center">
 
@@ -25,28 +25,33 @@
         </div>
 
         <main class="m-auto">
-            <form action="POST" class="form-signin p-3 pt-2 bg-content border-content" id="loginForm">
+            <form action="POST" class="form-signup p-3 pt-2 bg-content border-content" id="signUpForm">
                 <img src="./timecron.svg" alt="timecron" class="pb-3 px-3 img-fluid svg-icon">
 
                 <div id="notifications"></div>
 
-                <div class="form-floating">
-                    <input type="email" class="form-control login-input" id="emailInput" placeholder="name@example.com">
+                <div class="form-floating pb-2">
+                    <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
                     <label for="emailInput">Email</label>
                 </div>
             
-                <div class="form-floating">
-                    <input type="password" class="form-control login-input" id="passwordInput" placeholder="Password">
+                <div class="form-floating pb-2">
+                    <input type="password" class="form-control" id="passwordInput" placeholder="Password">
                     <label for="passwordInput">Password</label>
                 </div>
 
-                <button type="submit" class="btn btn-primary w-100 mt-3 rounded-pill" id="loginBtn">Log In</button>
+                <div class="form-floating pb-2">
+                    <input type="password" class="form-control" id="passwordConfirmInput" placeholder="Confirm Password">
+                    <label for="passwordConfirmInput">Confirm Password</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 mt-3 rounded-pill" id="loginBtn">Sign Up</button>
 
                 <div class="loginSignUpSeparator">
                     <span class="textInSeparator fs-6 text-body-secondary">or</span>
                 </div>
 
-                <a href="./signup.html" class="btn btn-sign-up w-100 rounded-pill">Sign Up</a>
+                <a href="./login.html" class="btn btn-sign-up w-100 rounded-pill">Log In</a>
             </form>
         </main>
 
@@ -150,13 +155,28 @@
                     });
                 });
 
-                document.querySelector("#loginForm").addEventListener("submit", event => {
+                document.querySelector("#signUpForm").addEventListener("submit", event => {
                     event.preventDefault();
 
                     const email = document.querySelector("#emailInput").value;
                     const password = document.querySelector("#passwordInput").value;
+                    const confirmedPassword = document.querySelector("#passwordConfirmInput").value;
 
-                    fetch("http://localhost:3000/login", {
+                    if (!email || !password == "") {
+                        return;
+                    }
+
+                    if (password != confirmedPassword) {
+                        createNotification(
+                            "danger",
+                            "The passwords do not match!",
+                            "fa-solid fa-triangle-exclamation",
+                            "loginFailureNotification"
+                        );
+                        return;
+                    }
+
+                    fetch("http://localhost:3000/register", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json"

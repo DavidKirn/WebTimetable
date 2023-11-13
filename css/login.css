@@ -1,0 +1,64 @@
+.svg-icon {
+    filter: var(--tc-icon-filter);
+}
+
+@media only screen and (max-width: 450px) {
+    .form-signin {
+        margin: .25rem;
+    }
+}
+
+@media only screen and (min-width: 451px) {
+    .form-signin {
+        max-width: 330px;
+        margin: 5rem;
+    }
+}
+
+.form-signin {
+    border-radius: .5rem;
+}
+
+.form-signin input:focus {
+    border-color: var(--tc-default);
+    box-shadow: var(--tc-default-box-shadow);
+}
+
+.form-signin .form-floating:focus-within {
+    z-index: 2;
+}
+
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.form-control,
+.form-floating label {
+    --bs-body-bg: var(--tc-input-bg);
+    --bs-border-color: var(--tc-input-border-color);
+}
+
+.loginSignUpSeparator {
+    border-top: 1px solid var(--tc-separator-border-color);
+    position: relative;
+    margin-top: 8.7%;
+    margin-bottom: 4%;
+    height: 15px;
+    text-align: center;
+    font-size: 83.34%;
+}
+
+.loginSignUpSeparator .textInSeparator {
+    background-color: var(--tc-content-bg);
+    padding: 0 .5em;
+    position: relative;
+    top: -.9em;
+}
